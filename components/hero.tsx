@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
 
@@ -62,7 +62,7 @@ export default function Hero() {
     visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] } },
   };
 
-  const computeOffset = (index) => {
+  const computeOffset = (index: number) => {
     if (hoverIndex === null || isMobile) return 0;
     const distance = index - hoverIndex;
     return distance * 40; 

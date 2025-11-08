@@ -21,7 +21,7 @@ export default function Header() {
             <Image
               src="/images/duka-new.png"
               alt="Duka Logo"
-              width={140} // i used 150 before remind
+              width={140} 
               height={40}
               className="object-contain"
               priority
