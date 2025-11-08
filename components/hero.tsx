@@ -3,13 +3,11 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-
+import { easeOut } from "framer-motion";
 
 export default function Hero() {
-
-  const [hoverIndex, setHoverIndex] = useState(null);
+  const [hoverIndex, setHoverIndex] = useState<number | null>(null);
   const [isMobile, setIsMobile] = useState(false);
-
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 1024);
@@ -25,7 +23,8 @@ export default function Hero() {
   const cards = [
     {
       label: "Digital Marketing",
-      sublabel: "Reach the right audience, build stronger connections, and grow faster.",
+      sublabel:
+        "Reach the right audience, build stronger connections, and grow faster.",
       video: "/videos/duka2.mp4",
       mediaType: "video",
     },
@@ -55,17 +54,25 @@ export default function Hero() {
 
   const containerVariants = {
     hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { staggerChildren: 0.07, duration: 0.9 } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { staggerChildren: 0.07, duration: 0.9 },
+    },
   };
   const itemVariants = {
     hidden: { opacity: 0, y: 40 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.9, ease: easeOut },
+    },
   };
 
   const computeOffset = (index: number) => {
     if (hoverIndex === null || isMobile) return 0;
     const distance = index - hoverIndex;
-    return distance * 40; 
+    return distance * 40;
   };
 
   return (
@@ -85,7 +92,7 @@ export default function Hero() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.15 }}
           variants={containerVariants}
-          className="space-y-12 md:space-y-20" //16,24 before 
+          className="space-y-12 md:space-y-20" //16,24 before
         >
           {/* Tagline */}
           <motion.div variants={itemVariants} className="text-center">
@@ -104,12 +111,13 @@ export default function Hero() {
                   style={{
                     WebkitTextStroke: "1.2px rgba(0,0,0,0.15)",
                     textShadow: "0 16px 50px rgba(245,158,11,0.2)",
-                  }}
-                >
+                  }}>
                   {headlineAccent}
                 </span>
               </span>
-              <span className="block text-black mt-4 md:mt-6">{headlineBottom}</span>
+              <span className="block text-black mt-4 md:mt-6">
+                {headlineBottom}
+              </span>
             </h1>
 
             <motion.div
@@ -120,7 +128,9 @@ export default function Hero() {
             />
           </motion.div>
 
-          <motion.div variants={itemVariants} className="relative mt-16 md:mt-24">
+          <motion.div
+            variants={itemVariants}
+            className="relative mt-16 md:mt-24">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-4 transition-[grid-gap] duration-300">
               {cards.map((card, index) => {
                 const offsetX = computeOffset(index);
@@ -130,13 +140,28 @@ export default function Hero() {
 
                 return (
                   <motion.button
-                    aria-label={isVideoCard ? card.label : `${card.number} ${card.description}`}
-                    key={isVideoCard ? card.label : `${card.number}-${card.description}`}
+                    aria-label={
+                      isVideoCard
+                        ? card.label
+                        : `${card.number} ${card.description}`
+                    }
+                    key={
+                      isVideoCard
+                        ? card.label
+                        : `${card.number}-${card.description}`
+                    }
                     onMouseEnter={() => setHoverIndex(index)}
                     onMouseLeave={() => setHoverIndex(null)}
                     onFocus={() => setHoverIndex(index)}
                     onBlur={() => setHoverIndex(null)}
-                    onClick={() => console.log("Card Clicked:", isVideoCard ? card.label : `${card.number} ${card.description}`)}
+                    onClick={() =>
+                      console.log(
+                        "Card Clicked:",
+                        isVideoCard
+                          ? card.label
+                          : `${card.number} ${card.description}`
+                      )
+                    }
                     layout
                     transition={{ type: "spring", stiffness: 120, damping: 15 }}
                     whileHover={{
@@ -152,12 +177,15 @@ export default function Hero() {
                       minHeight: 400, // Reduced height from 520 to 400
                       display: "flex",
                       flexDirection: "column",
-                      justifyContent: isVideoCard ? "flex-end" : "space-between",
+                      justifyContent: isVideoCard
+                        ? "flex-end"
+                        : "space-between",
                       transform: isMobile
                         ? "none"
-                        : `translateX(${offsetX}px) ${isHovered ? " scale(1.1)" : ""}`,
-                    }}
-                  >
+                        : `translateX(${offsetX}px) ${
+                            isHovered ? " scale(1.1)" : ""
+                          }`,
+                    }}>
                     {isVideoCard && (
                       <div className="absolute inset-0">
                         <motion.video
@@ -178,20 +206,25 @@ export default function Hero() {
 
                     {/* Content for Color Cards */}
                     {isColorCard && (
-                      <div className={`relative z-30 p-8 w-full h-full flex flex-col justify-between ${card.textColorClass}`}>
+                      <div
+                        className={`relative z-30 p-8 w-full h-full flex flex-col justify-between ${card.textColorClass}`}>
                         <div className="text-left">
                           <h4 className="text-5xl sm:text-6xl font-extrabold drop-shadow-md mb-2">
                             {card.number}
                           </h4>
-                    
                         </div>
-                        
+
                         {/* Description at bottom left */}
                         <div className="text-left">
                           <p className="text-xl sm:text-2xl font-bold opacity-90 drop-shadow-sm mb-2">
                             {card.description}
                           </p>
-                             <div className={`w-56 h-1 ${card.textColorClass === 'text-black' ? 'bg-black' : 'bg-yellow-400'}`}></div>
+                          <div
+                            className={`w-56 h-1 ${
+                              card.textColorClass === "text-black"
+                                ? "bg-black"
+                                : "bg-yellow-400"
+                            }`}></div>
                           {/* Additional text line */}
                           {card.additionalText && (
                             <p className="text-base sm:text-lg font-medium opacity-80 drop-shadow-sm">
@@ -208,21 +241,30 @@ export default function Hero() {
           </motion.div>
 
           {/* Subheadline & Description */}
-          <motion.div variants={itemVariants} className="text-center max-w-4xl mx-auto space-y-6 pt-10">
+          <motion.div
+            variants={itemVariants}
+            className="text-center max-w-4xl mx-auto space-y-6 pt-10">
             <p className="text-2xl sm:text-3xl font-medium text-black">
-              We help businesses turn ideas into brands, brands into experiences, and experiences into growth.
+              We help businesses turn ideas into brands, brands into
+              experiences, and experiences into growth.
             </p>
             <p className="text-lg sm:text-xl text-black/70 max-w-3xl mx-auto">
-              From strategy to design to tech — we make sure your brand doesn&apos;t just exist, it stands out.
+              From strategy to design to tech — we make sure your brand
+              doesn&apos;t just exist, it stands out.
             </p>
           </motion.div>
 
           {/* CTAs */}
-          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center justify-center gap-6">
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <button className="group bg-yellow-400 text-black px-8 sm:px-10 py-4 sm:py-5 rounded-full font-extrabold text-lg shadow-xl shadow-yellow-400/50 transform transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl">
               <span className="inline-flex items-center gap-3">
                 👉 Let&apos;s Build Your Brand
-                <ArrowRight size={20} className="transform group-hover:translate-x-1 transition-transform" />
+                <ArrowRight
+                  size={20}
+                  className="transform group-hover:translate-x-1 transition-transform"
+                />
               </span>
             </button>
 
