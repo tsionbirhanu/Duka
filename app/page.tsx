@@ -8,11 +8,11 @@ import Expertises from "@/components/expertises";
 import Works from "@/components/Works";
 import Footer from "@/components/footer";
 
-export default function Home(): JSX.Element {
+export default function Home(): React.ReactNode {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    // small delay for nicer entry when SPA
+    // Small delay for smoother entry animation
     const t = setTimeout(() => setIsLoaded(true), 40);
     return () => clearTimeout(t);
   }, []);
@@ -22,7 +22,7 @@ export default function Home(): JSX.Element {
       initial={{ opacity: 0 }}
       animate={isLoaded ? { opacity: 1 } : { opacity: 0 }}
       transition={{ duration: 0.45, ease: "easeOut" }}
-      className="bg-white text-black"
+      className="bg-white text-black min-h-screen"
     >
       <Header />
       <Hero />
