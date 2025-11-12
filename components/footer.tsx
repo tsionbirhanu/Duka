@@ -164,7 +164,7 @@ export default function Footer() {
                   contact@duka.agency
                 </a>
                 <a href="tel:+1234567890" className="text-black/80 hover:text-black font-semibold">
-                  +1 (555) 123-4567
+                  +251 900010203
                 </a>
               </div>
             </motion.div>
@@ -178,9 +178,9 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="text-black/80 hover:text-black font-semibold leading-relaxed"
               >
-                Creative Street 123
+                Creative Hub
                 <br />
-                New York, NY 10001
+                Addis Ababa, Ethiopia
               </a>
             </motion.div>
           </motion.div>

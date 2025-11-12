@@ -7,6 +7,7 @@ import Hero from "@/components/hero";
 import Expertises from "@/components/expertises";
 import Works from "@/components/Works";
 import Footer from "@/components/footer";
+import Testimonials from "@/components/testimonials"
 
 export default function Home(): React.ReactNode {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -27,6 +28,7 @@ export default function Home(): React.ReactNode {
       <Header />
       <Hero />
       <Expertises />
+      <Testimonials />
       <Works />
       <Footer />
     </motion.main>

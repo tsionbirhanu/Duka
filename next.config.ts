@@ -9,8 +9,20 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "*.unsplash.com", // optional for wildcard subdomains
+        hostname: "*.unsplash.com", 
       },
+       {
+        protocol: "https",
+        hostname: "placehold.co",
+      },
+       
+    { protocol: "https", hostname: "placehold.co" },
+
+    { protocol: "https", hostname: "via.placeholder.com" },
+    
+    { protocol: "https", hostname: "dummyimage.com" },
+  
+
     ],
   },
 };

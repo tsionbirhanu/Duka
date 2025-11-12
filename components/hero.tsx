@@ -105,7 +105,7 @@ export default function Hero() {
           <motion.div variants={itemVariants} className="text-center">
             <h1 className="mx-auto max-w-5xl text-[56px] sm:text-[80px] md:text-[110px] lg:text-[130px] leading-none font-extrabold tracking-tighter relative">
               <span className="block text-black">{headlineTop}</span>
-              <span className="block inline-block -skew-x-12 transform origin-left mt-4 md:mt-6">
+              <span className="inline-block -skew-x-12 transform origin-left mt-4 md:mt-6">
                 <span
                   className="px-6 py-2 inline-block text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-500 font-extrabold"
                   style={{
@@ -244,14 +244,14 @@ export default function Hero() {
           <motion.div
             variants={itemVariants}
             className="text-center max-w-4xl mx-auto space-y-6 pt-10">
-            <p className="text-2xl sm:text-3xl font-medium text-black">
+            <p className="text-2xl sm:text-3xl font-medium text-black/70">
               We help businesses turn ideas into brands, brands into
               experiences, and experiences into growth.
             </p>
-            <p className="text-lg sm:text-xl text-black/70 max-w-3xl mx-auto">
+            {/* <p className="text-lg sm:text-xl text-black/70 max-w-3xl mx-auto">
               From strategy to design to tech — we make sure your brand
               doesn&apos;t just exist, it stands out.
-            </p>
+            </p> */}
           </motion.div>
 
           {/* CTAs */}
@@ -260,7 +260,7 @@ export default function Hero() {
             className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <button className="group bg-yellow-400 text-black px-8 sm:px-10 py-4 sm:py-5 rounded-full font-extrabold text-lg shadow-xl shadow-yellow-400/50 transform transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl">
               <span className="inline-flex items-center gap-3">
-                👉 Let&apos;s Build Your Brand
+                Let&apos;s Build Your Brand
                 <ArrowRight
                   size={20}
                   className="transform group-hover:translate-x-1 transition-transform"
