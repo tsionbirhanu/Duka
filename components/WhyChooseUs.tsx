@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 
 const weStatements = [
   {
@@ -35,10 +36,6 @@ const weStatements = [
 
 export default function WhyChooseUs() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  });
 
   return (
     <section
@@ -73,21 +70,13 @@ export default function WhyChooseUs() {
 
         {/* Scrolling We Statements */}
         <div className="space-y-0">
-          {weStatements.map((statement, index) => {
-            const start = index / weStatements.length;
-            const end = (index + 1) / weStatements.length;
-
-            return (
-              <WeStatement
-                key={statement.id}
-                statement={statement}
-                index={index}
-                scrollYProgress={scrollYProgress}
-                start={start}
-                end={end}
-              />
-            );
-          })}
+          {weStatements.map((statement, index) => (
+            <WeStatement
+              key={statement.id}
+              statement={statement}
+              index={index}
+            />
+          ))}
         </div>
       </div>
     </section>

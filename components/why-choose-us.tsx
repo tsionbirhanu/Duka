@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useRef } from "react"
-import { motion, useScroll, useTransform } from "framer-motion"
+import { motion, useScroll, useTransform, MotionValue } from "framer-motion"
 
 interface Statement {
   id: number
@@ -41,7 +41,7 @@ interface StatementItemProps {
   statement: Statement
   index: number
   totalStatements: number
-  scrollYProgress: ReturnType<typeof useTransform>
+  scrollYProgress: MotionValue<number>
 }
 
 function StatementItem({ statement, index, totalStatements, scrollYProgress }: StatementItemProps) {
