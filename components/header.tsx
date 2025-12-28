@@ -1,19 +1,31 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = scrollY.getPrevious() ?? 0;
+    // Hide navbar when scrolling down, show when scrolling up
+    if (latest > previous && latest > 150) {
+      setHidden(true);
+    } else {
+      setHidden(false);
+    }
+  });
 
   return (
     <motion.header
       initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6 }}
-      className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-black/5">
+      animate={{ y: hidden ? -100 : 0 }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
+      className="fixed top-0 left-0 right-0 z-[100] bg-white border-b border-black/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 md:h-20 flex items-center justify-between">
         {/* Logo */}
         <motion.div whileHover={{ scale: 1.05 }} className="flex items-center">
@@ -32,18 +44,17 @@ export default function Header() {
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-1">
           {[
-            { label: "Expertises", href: "#expertises" },
-            { label: "Work", href: "#work" },
-            { label: "About", href: "#about" },
-            { label: "Contact", href: "#contact" },
+            { label: "Expertises", href: "/#expertises" },
+            { label: "How We Work", href: "/how-we-work" },
+            { label: "About", href: "/about" },
+            { label: "Contact", href: "/#contact" },
           ].map((item) => (
-            <motion.a
+            <Link
               key={item.href}
               href={item.href}
-              whileHover={{ color: "#fcd34d", scale: 1.05 }}
-              className="text-black px-3 py-2 font-medium transition-colors duration-150 text-sm">
+              className="text-black px-3 py-2 font-medium transition-colors duration-150 text-sm hover:text-yellow-500">
               {item.label}
-            </motion.a>
+            </Link>
           ))}
         </nav>
 
@@ -85,19 +96,18 @@ export default function Header() {
         className="md:hidden bg-white border-t border-black/5 overflow-hidden">
         <div className="px-4 py-4 flex flex-col gap-4 text-sm">
           {[
-            { label: "Expertises", href: "#expertises" },
-            { label: "Work", href: "#work" },
-            { label: "About", href: "#about" },
-            { label: "Contact", href: "#contact" },
+            { label: "Expertises", href: "/#expertises" },
+            { label: "How We Work", href: "/how-we-work" },
+            { label: "About", href: "/about" },
+            { label: "Contact", href: "/#contact" },
           ].map((item) => (
-            <motion.a
+            <Link
               key={item.href}
               href={item.href}
-              whileHover={{ color: "#fcd34d" }}
-              className="font-medium transition-colors"
+              className="font-medium transition-colors hover:text-yellow-500"
               onClick={() => setIsOpen(false)}>
               {item.label}
-            </motion.a>
+            </Link>
           ))}
           <motion.button
             whileHover={{ scale: 1.03 }}

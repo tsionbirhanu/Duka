@@ -3,21 +3,13 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Header from "@/components/header";
-import Hero from "@/components/hero";
-import ValueSection from "@/components/value-section";
-import Expertises from "@/components/expertises";
-import WhyChooseUs from "@/components/why-choose-us";
-import Works from "@/components/Works";
 import Footer from "@/components/footer";
-import Testimonials from "@/components/testimonials";
-import Brands from "@/components/brands";
-import FinalCTA from "@/components/final-cta";
+import About from "@/components/about";
 
-export default function Home(): React.ReactNode {
+export default function AboutPage(): React.ReactNode {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    // Small delay for smoother entry animation
     const t = setTimeout(() => setIsLoaded(true), 40);
     return () => clearTimeout(t);
   }, []);
@@ -30,15 +22,9 @@ export default function Home(): React.ReactNode {
       className="bg-white text-black min-h-screen"
     >
       <Header />
-      <Hero />
-      <ValueSection />
-      <Expertises />
-      <WhyChooseUs />
-      <Testimonials />
-      <Brands />
-      <FinalCTA />
-      {/* <Works /> */}
+      <About />
       <Footer />
     </motion.main>
   );
 }
+

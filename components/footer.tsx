@@ -91,7 +91,7 @@ export default function Footer() {
                   fill="black"
                 >
                   <textPath href="#textCircle">
-                    • GET HYPED • GET NOTICED • GET RESULTS •
+                    • WE ARE DIFFERENT • YOU SHOULD BE TOO • LET'S GET HYPED •
                   </textPath>
                 </text>
                 <text
@@ -133,7 +133,7 @@ export default function Footer() {
                 
                 {/* Navigation Pills */}
                 <div className="flex flex-wrap gap-2">
-                  {["Expertises", "Work", "About", "Contact"].map((item) => (
+                  {["Home", "Services", "Work", "Contact"].map((item) => (
                     <Link
                       key={item}
                       href={`#${item.toLowerCase()}`}
@@ -177,23 +177,23 @@ export default function Footer() {
                     Contact
                   </span>
                   <a
-                    href="mailto:contact@duka.agency"
+                    href="mailto:duka.creativess@gmail.com"
                     className="text-xs text-black/80 hover:text-black transition-colors"
                   >
-                    contact@duka.agency
+                    duka.creativess@gmail.com
                   </a>
                   <a
-                    href="tel:+251900010203"
+                    href="tel: +251905093496 / +251943195220"
                     className="text-xs text-black/80 hover:text-black transition-colors"
                   >
-                    +251 900 010 203
+                    +251905093496/ +251943195220
                   </a>
                 </div>
 
                 {/* Address */}
                 <div className="flex flex-col gap-0.5">
                   <span className="text-xs font-bold text-black mb-1">
-                    Adres
+                    Address
                   </span>
                   <p className="text-xs text-black/80">
                     Creative Hub,
@@ -208,7 +208,7 @@ export default function Footer() {
                   href="/privacy"
                   className="text-[10px] text-black/50 hover:text-black transition-colors"
                 >
-                  Privacyvoorwaarden
+                  Privacy Policy  
                 </Link>
               </div>
             </div>

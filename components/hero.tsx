@@ -16,9 +16,12 @@ export default function Hero() {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  const headlineTop = "Bold brands.";
-  const headlineAccent = "Smarter systems.";
-  const headlineBottom = "Better results.";
+  // Small text above main title
+  const tagline = "Bold brands. Smarter systems. Better results.";
+
+  // Main title in 2 lines, 2 colors
+  const mainTitleLine1 = "We're Different";
+  const mainTitleLine2 = "You Should Be Too.";
 
   const cards = [
     {
@@ -76,7 +79,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative w-full bg-white text-black min-h-screen flex items-center overflow-hidden pt-20 md:pt-32 pb-24 font-['Inter']">
+    <section className="relative w-full bg-white text-black min-h-screen flex flex-col justify-center overflow-hidden pt-28 md:pt-36 lg:pt-40 pb-16 md:pb-24">
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none -z-10"
@@ -92,46 +95,37 @@ export default function Hero() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.15 }}
           variants={containerVariants}
-          className="space-y-12 md:space-y-20" //16,24 before
+          className="flex flex-col"
         >
-          {/* Tagline */}
-          <motion.div variants={itemVariants} className="text-center">
-            <p className="text-sm sm:text-base font-semibold tracking-widest uppercase text-black/60">
-              We&apos;re different, you should be too.
+          {/* Small Tagline Above */}
+          <motion.div variants={itemVariants} className="text-center mb-6 md:mb-8">
+            <p className="text-xs sm:text-sm md:text-base font-medium tracking-[0.25em] uppercase text-black/40">
+              {tagline}
             </p>
           </motion.div>
 
-          {/* Headline */}
-          <motion.div variants={itemVariants} className="text-center">
-            <h1 className="mx-auto max-w-5xl text-[56px] sm:text-[80px] md:text-[110px] lg:text-[130px] leading-none font-extrabold tracking-tighter relative">
-              <span className="block text-black">{headlineTop}</span>
-              <span className="inline-block -skew-x-12 transform origin-left mt-4 md:mt-6">
-                <span
-                  className="px-6 py-2 inline-block text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-500 font-extrabold"
-                  style={{
-                    WebkitTextStroke: "1.2px rgba(0,0,0,0.15)",
-                    textShadow: "0 16px 50px rgba(245,158,11,0.2)",
-                  }}>
-                  {headlineAccent}
-                </span>
-              </span>
-              <span className="block text-black mt-4 md:mt-6">
-                {headlineBottom}
+          {/* Main Title - 2 Lines, 2 Colors */}
+          <motion.div
+            variants={itemVariants}
+            className="text-center mb-16 md:mb-24 lg:mb-32">
+            <h1 className="mx-auto max-w-full px-4 text-[42px] sm:text-[60px] md:text-[80px] lg:text-[100px] xl:text-[120px] leading-[0.92] font-bold tracking-[-0.03em] relative">
+              {/* Line 1 - Black */}
+              <span className="block text-black">{mainTitleLine1}</span>
+              {/* Line 2 - Yellow with accent styling */}
+              <span
+                className="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-amber-400 to-yellow-500 mt-2 md:mt-3"
+                style={{
+                  textShadow: "0 8px 40px rgba(251,191,36,0.3)",
+                }}>
+                {mainTitleLine2}
               </span>
             </h1>
-
-            <motion.div
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{ duration: 1.2, delay: 0.3, ease: "easeOut" }}
-              className="mx-auto mt-10 h-2 w-56 bg-gradient-to-r from-yellow-500 to-yellow-300 rounded-full origin-left shadow-lg shadow-yellow-400/50"
-            />
           </motion.div>
 
           <motion.div
             variants={itemVariants}
-            className="relative mt-16 md:mt-24">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-4 transition-[grid-gap] duration-300">
+            className="relative">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-4 transition-[grid-gap] duration-300">
               {cards.map((card, index) => {
                 const offsetX = computeOffset(index);
                 const isHovered = hoverIndex === index && !isMobile;
@@ -240,37 +234,74 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* Subheadline & Description */}
+          {/* Subheadline & Description Section */}
           <motion.div
             variants={itemVariants}
-            className="text-center max-w-4xl mx-auto space-y-6 pt-10">
-            <p className="text-2xl sm:text-3xl font-medium text-black/70">
-              We help businesses turn ideas into brands, brands into
-              experiences, and experiences into growth.
-            </p>
-            {/* <p className="text-lg sm:text-xl text-black/70 max-w-3xl mx-auto">
-              From strategy to design to tech — we make sure your brand
-              doesn&apos;t just exist, it stands out.
-            </p> */}
-          </motion.div>
+            className="relative w-full bg-white mt-20 md:mt-28 lg:mt-36 py-20 md:py-28 lg:py-32 px-6 md:px-12 lg:px-20 -mx-4 sm:-mx-6 lg:-mx-8"
+            style={{ width: "100vw", marginLeft: "calc(-50vw + 50%)" }}>
+            <div className="max-w-6xl mx-auto">
+              {/* Main Bold Headline - Inter font */}
+              <h2
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[52px] font-bold text-black leading-[1.2] tracking-tight max-w-5xl"
+                style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+                We help businesses turn ideas into brands, brands into
+                experiences, and experiences into growth.
+              </h2>
 
-          {/* CTAs */}
-          <motion.div
-            variants={itemVariants}
-            className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <button className="group bg-yellow-400 text-black px-8 sm:px-10 py-4 sm:py-5 rounded-full font-extrabold text-lg shadow-xl shadow-yellow-400/50 transform transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl">
-              <span className="inline-flex items-center gap-3">
-                Let&apos;s Build Your Brand
-                <ArrowRight
-                  size={20}
-                  className="transform group-hover:translate-x-1 transition-transform"
-                />
-              </span>
-            </button>
+              {/* Bottom Section with Image and Description */}
+              <div className="flex flex-col md:flex-row items-start gap-10 md:gap-20 lg:gap-28 mt-16 md:mt-24">
+                {/* Image */}
+                <div className="w-48 h-56 md:w-64 md:h-72 lg:w-72 lg:h-80 bg-[#F5E6D3] rounded-2xl overflow-hidden flex-shrink-0 shadow-lg">
+                  <img
+                    src="/images/image.png"
+                    alt="Team member"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
 
-            <button className="border-2 border-black text-black px-8 sm:px-10 py-4 sm:py-5 rounded-full font-extrabold text-lg hover:bg-black hover:text-yellow-400 transition-colors duration-300 hover:scale-[1.03]">
-              See Our Work
-            </button>
+                {/* Secondary Description and Button */}
+                <div className="flex-1 flex flex-col justify-center md:pt-8 lg:pt-12">
+                  <p className="text-lg sm:text-xl md:text-2xl lg:text-[26px] font-medium text-black/80 leading-relaxed max-w-xl">
+                    From strategy to design to tech — we make sure your brand
+                    doesn&apos;t just exist, it stands out.
+                  </p>
+
+                  {/* Buttons */}
+                  <div className="mt-10 md:mt-12 flex flex-col sm:flex-row gap-4">
+                    <button className="group inline-flex items-center gap-3 bg-white border border-black/20 hover:border-black pl-6 pr-2 py-2 rounded-full font-medium text-sm text-black transition-all duration-300">
+                      Let&apos;s Build Your Brand
+                      <span className="w-9 h-9 bg-black rounded-xl flex items-center justify-center group-hover:bg-gray-800 transition-colors">
+                        <ArrowRight size={16} className="text-white" />
+                      </span>
+                    </button>
+                    <button className="group inline-flex items-center gap-3 bg-white border border-black/20 hover:border-black pl-6 pr-2 py-2 rounded-full font-medium text-sm text-black transition-all duration-300">
+                      See Our Work
+                      <span className="w-9 h-9 bg-black rounded-xl flex items-center justify-center group-hover:bg-gray-800 transition-colors">
+                        <ArrowRight size={16} className="text-white" />
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Scroll Down Arrow - Bottom Right */}
+            <div className="absolute bottom-8 right-8 md:bottom-12 md:right-16">
+              <button className="w-14 h-14 rounded-full border-2 border-black/15 flex items-center justify-center hover:border-black/40 transition-colors duration-300 bg-white/50 backdrop-blur-sm">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="text-black/50">
+                  <path d="M12 5v14M19 12l-7 7-7-7" />
+                </svg>
+              </button>
+            </div>
           </motion.div>
         </motion.div>
       </div>

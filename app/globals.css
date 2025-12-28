@@ -1,6 +1,35 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* Uni Neue Trial family (drop the OTF files in /public/fonts/uni-neue/) */
+@font-face {
+  font-family: "Uni Neue";
+  src: url("/fonts/uni-neue/UniNeue-Trial-Regular.otf") format("opentype"),
+    local("Uni Neue Trial Regular"), local("Uni Neue Regular"),
+    local("Uni Neue");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Uni Neue";
+  src: url("/fonts/uni-neue/UniNeue-Trial-Bold.otf") format("opentype"),
+    local("Uni Neue Trial Bold"), local("Uni Neue Bold"), local("Uni Neue");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Uni Neue";
+  src: url("/fonts/uni-neue/UniNeue-Trial-Black.otf") format("opentype"),
+    local("Uni Neue Trial Black"), local("Uni Neue Black"), local("Uni Neue");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 :root {
@@ -76,7 +105,15 @@
 }
 
 @theme inline {
-  --font-sans: "Geist", "Geist Fallback";
+  --font-sans: var(
+    --font-inter,
+    "Inter",
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif
+  );
+  --font-heading: "Uni Neue", var(--font-inter, "Inter", system-ui, sans-serif);
   --font-mono: "Geist Mono", "Geist Mono Fallback";
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -127,6 +164,27 @@
 
   html {
     scroll-behavior: smooth;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+  }
+
+  p,
+  span,
+  a,
+  li,
+  input,
+  textarea,
+  button,
+  label {
+    font-family: var(--font-sans);
   }
 }
 

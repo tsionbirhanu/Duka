@@ -135,15 +135,77 @@ interface ExpertiseCardProps {
 function ExpertiseCard({ expertise, index, totalCards, scrollYProgress }: ExpertiseCardProps) {
   const theme = THEME_COLORS[expertise.colorTheme]
   const isLastCard = index === totalCards - 1
+  const isFirstCard = index === 0
 
-  const progress = useTransform(scrollYProgress, [index / totalCards, (index + 1) / totalCards], [0, 1])
-  const opacity = useTransform(progress, [0, 0.2, 1], [0, 1, 1])
-  const y = useTransform(progress, [0, 1], ["100%", "0%"])
-  const zIndex = useTransform(progress, [0, 0.8, 1], [index + 1, 100, index + 1])
-  const scale = useTransform(progress, [0.8, 1], [1, isLastCard ? 1 : 0.95])
+  // This card's scroll range for ENTRY
+  const cardStart = index / totalCards
+  const cardEnd = (index + 1) / totalCards
+  
+  // When next card starts covering this one (EXIT animation triggers)
+  const exitStart = cardEnd
+  const exitEnd = Math.min((index + 1.8) / totalCards, 1)
+
+  // ENTRY: Card slides up from bottom (first card starts at 0%)
+  const y = useTransform(
+    scrollYProgress,
+    [cardStart, cardEnd],
+    [isFirstCard ? "0%" : "100%", "0%"]
+  )
+
+  // Opacity: Fade in on entry, stay visible
+  const opacity = useTransform(
+    scrollYProgress,
+    [cardStart, cardStart + 0.03],
+    [isFirstCard ? 1 : 0, 1]
+  )
+
+  // EXIT: Scale down as next card covers (3D recede effect)
+  const scale = useTransform(
+    scrollYProgress,
+    [exitStart, exitEnd],
+    [1, isLastCard ? 1 : 0.88]
+  )
+
+  // EXIT: Rotate backward on X-axis (tilt back into 3D space)
+  const rotateX = useTransform(
+    scrollYProgress,
+    [exitStart, exitEnd],
+    [0, isLastCard ? 0 : -8]
+  )
+
+  // EXIT: Rotate on Y-axis - left side falls back slightly
+  const rotateY = useTransform(
+    scrollYProgress,
+    [exitStart, exitEnd],
+    [0, isLastCard ? 0 : 6]
+  )
+
+  // EXIT: Push card back in Z-space for depth
+  const translateZ = useTransform(
+    scrollYProgress,
+    [exitStart, exitEnd],
+    [0, isLastCard ? 0 : -100]
+  )
+
+  // Z-index: Newer cards on top
+  const zIndex = index + 1
 
   return (
-    <motion.div role="listitem" className="expertise-item absolute inset-0" style={{ opacity, y, zIndex, scale }}>
+    <motion.div 
+      role="listitem" 
+      className="expertise-item absolute inset-0 will-change-transform" 
+      style={{ 
+        opacity, 
+        y, 
+        scale,
+        rotateX,
+        rotateY,
+        z: translateZ,
+        zIndex,
+        transformOrigin: "center top",
+        transformStyle: "preserve-3d",
+      }}
+    >
       <div className="expertise-slide h-full">
         <div className="expertise-wrap h-full">
           <div
@@ -283,7 +345,7 @@ export default function Expertises(): React.JSX.Element {
     <section
       ref={containerRef}
       id="expertises"
-      className="section_expertises relative bg-white"
+      className="section_expertises relative bg-white z-10"
       style={{ minHeight: `${n * 100}vh` }}
     >
       {/* Sticky container with card stack */}
@@ -291,7 +353,14 @@ export default function Expertises(): React.JSX.Element {
         <div className="padding-global w-full">
           <div className="container-col-12 w-full max-w-7xl mx-auto px-4 lg:px-6">
             <div className="expertises-collection w-full">
-              <div role="list" className="expertises-list relative h-[90vh] w-full max-w-6xl mx-auto">
+              <div 
+                role="list" 
+                className="expertises-list relative h-[90vh] w-full max-w-6xl mx-auto"
+                style={{ 
+                  perspective: "1500px",
+                  perspectiveOrigin: "center 30%",
+                }}
+              >
                 {expertises.map((expertise, index) => (
                   <ExpertiseCard
                     key={expertise.id}
