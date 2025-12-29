@@ -119,9 +119,9 @@ export default function WhyChooseUs(): React.JSX.Element {
         <div className="w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
           {/* Badge */}
           <div className="mb-8 md:mb-12">
-            <span className="inline-block px-4 py-2 bg-black text-white text-xs font-medium tracking-wider uppercase rounded-full">
+            {/* <span className="inline-block px-4 py-2 bg-black text-white text-xs font-medium tracking-wider uppercase rounded-full">
               Why Choose Us
-            </span>
+            </span> */}
           </div>
 
           {/* Main Content Grid */}
@@ -153,7 +153,7 @@ export default function WhyChooseUs(): React.JSX.Element {
           {/* Decorative Element */}
           <div className="absolute bottom-12 left-6 md:left-12 lg:left-16">
             <div className="flex items-center gap-3 text-black/30">
-              <span className="text-sm font-medium tracking-wider uppercase">Scroll to explore</span>
+              {/* <span className="text-sm font-medium tracking-wider uppercase">Scroll to explore</span> */}
               <motion.div
                 animate={{ y: [0, 8, 0] }}
                 transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}

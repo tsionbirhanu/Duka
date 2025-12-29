@@ -25,7 +25,7 @@ export default function Header() {
       initial={{ y: -100 }}
       animate={{ y: hidden ? -100 : 0 }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
-      className="fixed top-0 left-0 right-0 z-[100] bg-white border-b border-black/5">
+      className="fixed top-0 left-0 right-0 z-[100] bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 md:h-20 flex items-center justify-between">
         {/* Logo */}
         <motion.div whileHover={{ scale: 1.05 }} className="flex items-center">
@@ -60,10 +60,15 @@ export default function Header() {
 
         {/* CTA Button */}
         <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="hidden md:flex items-center bg-yellow-400 text-black px-6 py-2.5 rounded-full font-bold transition-all shadow-lg text-sm gap-2 hover:bg-yellow-300">
-          Get Results ✨
+          whileHover={{ rotateZ: -3 }}
+          whileTap={{ scale: 0.97 }}
+          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          className="hidden md:flex items-center gap-2.5 bg-yellow-300 text-black pl-5 pr-1 py-1 rounded-xl font-semibold text-sm border border-yellow-300 cursor-pointer origin-center"
+        >
+          <span>Get Results</span>
+          <span className="flex items-center justify-center w-8 h-8 bg-white rounded-lg text-lg">
+            🔥
+          </span>
         </motion.button>
 
         {/* Mobile Menu Button */}
@@ -110,11 +115,15 @@ export default function Header() {
             </Link>
           ))}
           <motion.button
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.95 }}
-            className="bg-yellow-400 text-black px-6 py-2.5 rounded-full font-bold hover:bg-yellow-300 transition-all w-full shadow-lg"
-            onClick={() => setIsOpen(false)}>
-            Get Results ✨
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="flex items-center justify-center gap-2.5 bg-yellow-300 text-black pl-5 pr-1 py-1 rounded-xl font-semibold text-sm border border-yellow-300 transition-all w-full"
+            onClick={() => setIsOpen(false)}
+          >
+            <span>Get Results</span>
+            <span className="flex items-center justify-center w-8 h-8 bg-white rounded-lg text-lg">
+              🔥
+            </span>
           </motion.button>
         </div>
       </motion.nav>

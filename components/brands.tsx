@@ -14,7 +14,6 @@ const brands = [
   "Essence of Work",
   "Zemenay Tech",
   "Efuye Gela",
-  "Addis Alemayehu",
 ];
 
 // Duplicate for seamless infinite scroll

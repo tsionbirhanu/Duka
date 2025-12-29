@@ -11,7 +11,7 @@ import Works from "@/components/Works";
 import Footer from "@/components/footer";
 import Testimonials from "@/components/testimonials";
 import Brands from "@/components/brands";
-import FinalCTA from "@/components/final-cta";
+// import FinalCTA from "@/components/final-cta";
 
 export default function Home(): React.ReactNode {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -36,7 +36,7 @@ export default function Home(): React.ReactNode {
       <WhyChooseUs />
       <Testimonials />
       <Brands />
-      <FinalCTA />
+      {/* <FinalCTA /> */}
       {/* <Works /> */}
       <Footer />
     </motion.main>

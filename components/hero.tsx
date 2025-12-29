@@ -95,10 +95,11 @@ export default function Hero() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.15 }}
           variants={containerVariants}
-          className="flex flex-col"
-        >
+          className="flex flex-col">
           {/* Small Tagline Above */}
-          <motion.div variants={itemVariants} className="text-center mb-6 md:mb-8">
+          <motion.div
+            variants={itemVariants}
+            className="text-center mb-6 md:mb-8">
             <p className="text-xs sm:text-sm md:text-base font-medium tracking-[0.25em] uppercase text-black/40">
               {tagline}
             </p>
@@ -122,9 +123,7 @@ export default function Hero() {
             </h1>
           </motion.div>
 
-          <motion.div
-            variants={itemVariants}
-            className="relative">
+          <motion.div variants={itemVariants} className="relative">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-4 transition-[grid-gap] duration-300">
               {cards.map((card, index) => {
                 const offsetX = computeOffset(index);
@@ -240,24 +239,38 @@ export default function Hero() {
             className="relative w-full bg-white mt-20 md:mt-28 lg:mt-36 py-20 md:py-28 lg:py-32 px-6 md:px-12 lg:px-20 -mx-4 sm:-mx-6 lg:-mx-8"
             style={{ width: "100vw", marginLeft: "calc(-50vw + 50%)" }}>
             <div className="max-w-6xl mx-auto">
-              {/* Main Bold Headline - Inter font */}
+              {/* Main Bold Headline - Inter font with tight leading */}
               <h2
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[52px] font-bold text-black leading-[1.2] tracking-tight max-w-5xl"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[52px] font-bold text-black leading-[1.1] tracking-tight max-w-5xl"
                 style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
                 We help businesses turn ideas into brands, brands into
-                experiences, and experiences into growth.
+                experiences, and experiences into{" "}
+                <span
+                  className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-amber-400 to-yellow-500"
+                  style={{ textShadow: "0 4px 20px rgba(251,191,36,0.3)" }}>
+                  growth.
+                </span>
               </h2>
 
               {/* Bottom Section with Image and Description */}
               <div className="flex flex-col md:flex-row items-start gap-10 md:gap-20 lg:gap-28 mt-16 md:mt-24">
-                {/* Image */}
-                <div className="w-48 h-56 md:w-64 md:h-72 lg:w-72 lg:h-80 bg-[#F5E6D3] rounded-2xl overflow-hidden flex-shrink-0 shadow-lg">
+                {/* Image with floating shadow and animation */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9, rotate: -2 }}
+                  whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+                  viewport={{ once: true, amount: 0.5 }}
+                  transition={{ duration: 0.6, ease: "easeOut" }}
+                  className="w-48 h-56 md:w-64 md:h-72 lg:w-72 lg:h-80 bg-[#F5E6D3] rounded-[2.5rem] overflow-hidden flex-shrink-0 mx-auto md:mx-0 group"
+                  style={{
+                    boxShadow:
+                      "0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 12px 24px -8px rgba(0, 0, 0, 0.1)",
+                  }}>
                   <img
                     src="/images/image.png"
                     alt="Team member"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transition-all duration-500"
                   />
-                </div>
+                </motion.div>
 
                 {/* Secondary Description and Button */}
                 <div className="flex-1 flex flex-col justify-center md:pt-8 lg:pt-12">
@@ -266,20 +279,34 @@ export default function Hero() {
                     doesn&apos;t just exist, it stands out.
                   </p>
 
-                  {/* Buttons */}
+                  {/* Buttons - styled like Get Results */}
                   <div className="mt-10 md:mt-12 flex flex-col sm:flex-row gap-4">
-                    <button className="group inline-flex items-center gap-3 bg-white border border-black/20 hover:border-black pl-6 pr-2 py-2 rounded-full font-medium text-sm text-black transition-all duration-300">
+                    {/* Primary Button - Solid Yellow like Get Results */}
+                    <motion.button
+                      whileHover={{ rotateZ: -2 }}
+                      whileTap={{ scale: 0.97 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 20,
+                      }}
+                      className="group inline-flex items-center gap-2.5 bg-yellow-300 text-black pl-6 pr-1.5 py-1.5 rounded-xl font-semibold text-sm border border-yellow-300 cursor-pointer origin-center">
                       Let&apos;s Build Your Brand
-                      <span className="w-9 h-9 bg-black rounded-xl flex items-center justify-center group-hover:bg-gray-800 transition-colors">
-                        <ArrowRight size={16} className="text-white" />
+                      <span className="w-8 h-8 bg-white rounded-lg flex items-center justify-center text-lg">
+                        🔥
                       </span>
-                    </button>
-                    <button className="group inline-flex items-center gap-3 bg-white border border-black/20 hover:border-black pl-6 pr-2 py-2 rounded-full font-medium text-sm text-black transition-all duration-300">
+                    </motion.button>
+
+                    {/* Secondary Button - Ghost/Outline style */}
+                    <motion.button
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="group inline-flex items-center gap-3 bg-transparent border border-black/20 hover:border-black pl-6 pr-2 py-2 rounded-xl font-semibold text-sm text-black transition-all duration-300 cursor-pointer">
                       See Our Work
-                      <span className="w-9 h-9 bg-black rounded-xl flex items-center justify-center group-hover:bg-gray-800 transition-colors">
-                        <ArrowRight size={16} className="text-white" />
+                      <span className="w-8 h-8 bg-black rounded-lg flex items-center justify-center group-hover:bg-gray-800 transition-colors">
+                        <ArrowRight size={14} className="text-white" />
                       </span>
-                    </button>
+                    </motion.button>
                   </div>
                 </div>
               </div>

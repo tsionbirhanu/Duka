@@ -2,7 +2,6 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 
 const weStatements = [
   {

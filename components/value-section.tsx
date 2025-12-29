@@ -7,7 +7,9 @@ export default function ValueSection() {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.3 },
+      transition: {
+        staggerChildren: 0.3,
+      },
     },
   };
 
@@ -16,80 +18,76 @@ export default function ValueSection() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: "easeOut" as const },
+      transition: {
+        duration: 0.8,
+        ease: "easeOut",
+      },
     },
   };
 
   return (
-    <section className="relative w-full bg-white py-32 md:py-48 lg:py-64 overflow-hidden">
+    <section className="py-24 md:py-32 lg:py-40 bg-white">
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: 0.3 }}
           variants={containerVariants}
-          className="space-y-32 md:space-y-48 lg:space-y-64"
-        >
-          {/* Section 1: Text Left, Space Right */}
-          <motion.div variants={itemVariants} className="relative">
-            {/* Large Background Number */}
-            <span 
-              className="absolute -top-16 md:-top-24 lg:-top-32 -left-4 md:left-0 text-[180px] md:text-[280px] lg:text-[360px] font-black text-black/[0.03] leading-none select-none pointer-events-none"
-              style={{ fontFamily: "'Uni Neue', 'Inter', system-ui, sans-serif" }}
-            >
-              01
-            </span>
-            
-            <div className="relative z-10 max-w-3xl">
-              <h2 
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-black leading-[1.1] tracking-tight"
-                style={{ fontFamily: "'Uni Neue', 'Inter', system-ui, sans-serif" }}
-              >
-                No templates here — everything is{" "}
-                <span className="text-yellow-400">built from scratch</span>, for you.
-              </h2>
+          className="space-y-20 md:space-y-32">
+          {/* Step 1 */}
+          <motion.div
+            variants={itemVariants}
+            className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            <div className="lg:col-span-1 flex items-start">
+              <span className="text-6xl md:text-7xl lg:text-8xl font-bold text-[#FFD93D]">
+                01
+              </span>
+            </div>
+            <div className="lg:col-span-11 space-y-4">
+              <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black leading-tight">
+                No templates here
+              </h3>
+              <p className="text-lg md:text-xl text-black/70 leading-relaxed max-w-3xl">
+                everything is built from scratch, for you.
+              </p>
             </div>
           </motion.div>
 
-          {/* Section 2: Space Left, Text Right */}
-          <motion.div variants={itemVariants} className="relative">
-            {/* Large Background Number */}
-            <span 
-              className="absolute -top-16 md:-top-24 lg:-top-32 right-0 md:right-12 text-[180px] md:text-[280px] lg:text-[360px] font-black text-black/[0.03] leading-none select-none pointer-events-none"
-              style={{ fontFamily: "'Uni Neue', 'Inter', system-ui, sans-serif" }}
-            >
-              02
-            </span>
-            
-            <div className="relative z-10 max-w-3xl ml-auto text-right">
-              <h2 
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-black leading-[1.1] tracking-tight"
-                style={{ fontFamily: "'Uni Neue', 'Inter', system-ui, sans-serif" }}
-              >
-                Looks good, works great — every design has{" "}
-                <span className="text-yellow-400">a purpose</span>.
-              </h2>
+          {/* Step 2 */}
+          <motion.div
+            variants={itemVariants}
+            className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start lg:text-center">
+            <div className="lg:col-span-12 lg:col-start-1 space-y-4">
+              <div className="flex justify-start lg:justify-center">
+                <span className="text-6xl md:text-7xl lg:text-8xl font-bold text-[#FFD93D]">
+                  02
+                </span>
+              </div>
+              <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black leading-tight">
+                Looks good, works great
+              </h3>
+              <p className="text-lg md:text-xl text-black/70 leading-relaxed max-w-3xl lg:mx-auto">
+                every design has a purpose.
+              </p>
             </div>
           </motion.div>
 
-          {/* Section 3: Text Centered */}
-          <motion.div variants={itemVariants} className="relative">
-            {/* Large Background Number */}
-            <span 
-              className="absolute -top-16 md:-top-24 lg:-top-32 left-1/2 -translate-x-1/2 text-[180px] md:text-[280px] lg:text-[360px] font-black text-black/[0.03] leading-none select-none pointer-events-none"
-              style={{ fontFamily: "'Uni Neue', 'Inter', system-ui, sans-serif" }}
-            >
-              03
-            </span>
-            
-            <div className="relative z-10 max-w-4xl mx-auto text-center">
-              <h2 
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-black leading-[1.1] tracking-tight"
-                style={{ fontFamily: "'Uni Neue', 'Inter', system-ui, sans-serif" }}
-              >
-                We grow with you — long-term support for{" "}
-                <span className="text-yellow-400">long-term brands</span>.
-              </h2>
+          {/* Step 3 */}
+          <motion.div
+            variants={itemVariants}
+            className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start lg:text-right">
+            <div className="lg:col-span-11 lg:col-start-2 space-y-4">
+              <div className="flex justify-start lg:justify-end">
+                <span className="text-6xl md:text-7xl lg:text-8xl font-bold text-[#FFD93D]">
+                  03
+                </span>
+              </div>
+              <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black leading-tight">
+                We grow with you
+              </h3>
+              <p className="text-lg md:text-xl text-black/70 leading-relaxed max-w-3xl lg:ml-auto">
+                long-term support for long-term brands.
+              </p>
             </div>
           </motion.div>
         </motion.div>
@@ -97,4 +95,3 @@ export default function ValueSection() {
     </section>
   );
 }
-
