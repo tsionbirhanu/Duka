@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model ServiceCategory {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String?
+  packages    Package[]
+  features    Feature[]
+  createdAt   DateTime  @default(now())
+}
+
+model Package {
+  id                Int       @id @default(autoincrement())
+  name              String
+  price             Int
+  currency          String    @default("ETB")
+  turnaroundDays    Int?
+
+  serviceCategoryId Int
+  serviceCategory   ServiceCategory @relation(fields: [serviceCategoryId], references: [id])
+
+  featureValues     PackageFeature[]
+  createdAt         DateTime @default(now())
+}
+
+model Feature {
+  id                Int       @id @default(autoincrement())
+  name              String
+
+  serviceCategoryId Int
+  serviceCategory   ServiceCategory @relation(fields: [serviceCategoryId], references: [id])
+
+  featureValues     PackageFeature[]
+}
+
+model PackageFeature {
+  id         Int   @id @default(autoincrement())
+  packageId Int
+  featureId Int
+  value      Json
+
+  package    Package  @relation(fields: [packageId], references: [id])
+  feature    Feature  @relation(fields: [featureId], references: [id])
+
+  @@unique([packageId, featureId])
+}
