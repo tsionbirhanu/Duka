@@ -77,22 +77,13 @@ export default function Testimonials() {
         {/* Section Header */}
         <div className="px-6 md:px-12 lg:px-16 mb-12 md:mb-16">
           <div className="max-w-7xl mx-auto">
-            {/* <motion.span
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="inline-block px-4 py-2 bg-black text-white text-xs font-medium tracking-wider uppercase rounded-full mb-6"
-            >
-              Testimonials
-            </motion.span> */}
             <motion.h2
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-black leading-[1.1] tracking-tight"
-              style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
-              What our clients say
+              transition={{ duration: 0.8 }}
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black uppercase tracking-tighter inline-block">
+              Client <span className="text-[#FFD600]">voices.</span>
             </motion.h2>
           </div>
         </div>

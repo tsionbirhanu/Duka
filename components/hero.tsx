@@ -32,7 +32,7 @@ export default function Hero() {
       mediaType: "video",
     },
     {
-      number: "50+",
+      number: "16+",
       description: "Brands Built",
       additionalText: "From startups to enterprises",
       backgroundColorClass: "bg-black",
@@ -48,7 +48,7 @@ export default function Hero() {
     {
       number: "100%",
       description: "On-Time Delivery",
-      additionalText: "No missed deadlines",
+      additionalText: "0 Missed Deadlines since launch",
       backgroundColorClass: "bg-yellow-400",
       textColorClass: "text-black",
       mediaType: "color",

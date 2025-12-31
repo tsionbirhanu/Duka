@@ -8,6 +8,7 @@ import {
   useTransform,
   type MotionValue,
 } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 
 interface Expertise {
   id: number;
@@ -16,12 +17,13 @@ interface Expertise {
   subtitle: string;
   description: string;
   colorTheme: "cream" | "yellow" | "black";
-  mediaType: "image" | "video";
-  mediaUrl?: string;
+  mediaType: "video" | "image";
+  mediaUrl: string;
   buttonText: string;
   linkHref: string;
 }
 
+// 1. UPDATED TEXT DATA (From Source 2) but keeping Source 1 Button Text
 const expertises: Expertise[] = [
   {
     id: 1,
@@ -106,6 +108,7 @@ const expertises: Expertise[] = [
   },
 ];
 
+// 2. THEME COLORS (Strictly from Source 1)
 const THEME_COLORS = {
   cream: {
     bg: "bg-amber-100",
@@ -114,8 +117,9 @@ const THEME_COLORS = {
     labelText: "text-black",
     buttonBg: "bg-black",
     buttonText: "text-white",
-    numberText: "text-amber-200",
+    numberText: "text-amber-200", // Used for the giant number
     theme: "theme-cream",
+    borderColor: "border-black/10",
   },
   yellow: {
     bg: "bg-yellow-400",
@@ -124,8 +128,9 @@ const THEME_COLORS = {
     labelText: "text-black",
     buttonBg: "bg-black",
     buttonText: "text-yellow-400",
-    numberText: "text-yellow-100",
+    numberText: "text-yellow-100", // Used for the giant number
     theme: "theme-yellow",
+    borderColor: "border-black/10",
   },
   black: {
     bg: "bg-black",
@@ -134,8 +139,9 @@ const THEME_COLORS = {
     labelText: "text-black",
     buttonBg: "bg-white",
     buttonText: "text-black",
-    numberText: "text-gray-800",
+    numberText: "text-gray-800", // Used for the giant number
     theme: "theme-black",
+    borderColor: "border-white/10",
   },
 } as const;
 
@@ -156,57 +162,49 @@ function ExpertiseCard({
   const isLastCard = index === totalCards - 1;
   const isFirstCard = index === 0;
 
-  // This card's scroll range for ENTRY
+  // 3. SCROLL ANIMATION LOGIC (Strictly from Source 1)
   const cardStart = index / totalCards;
   const cardEnd = (index + 1) / totalCards;
 
-  // When next card starts covering this one (EXIT animation triggers)
   const exitStart = cardEnd;
   const exitEnd = Math.min((index + 1.8) / totalCards, 1);
 
-  // ENTRY: Card slides up from bottom (first card starts at 0%)
   const y = useTransform(
     scrollYProgress,
     [cardStart, cardEnd],
     [isFirstCard ? "0%" : "100%", "0%"]
   );
 
-  // Opacity: Fade in on entry, stay visible
   const opacity = useTransform(
     scrollYProgress,
     [cardStart, cardStart + 0.03],
     [isFirstCard ? 1 : 0, 1]
   );
 
-  // EXIT: Scale down as next card covers (3D recede effect)
   const scale = useTransform(
     scrollYProgress,
     [exitStart, exitEnd],
     [1, isLastCard ? 1 : 0.88]
   );
 
-  // EXIT: Rotate backward on X-axis (tilt back into 3D space)
   const rotateX = useTransform(
     scrollYProgress,
     [exitStart, exitEnd],
     [0, isLastCard ? 0 : -8]
   );
 
-  // EXIT: Rotate on Y-axis - left side falls back slightly
   const rotateY = useTransform(
     scrollYProgress,
     [exitStart, exitEnd],
     [0, isLastCard ? 0 : 6]
   );
 
-  // EXIT: Push card back in Z-space for depth
   const translateZ = useTransform(
     scrollYProgress,
     [exitStart, exitEnd],
     [0, isLastCard ? 0 : -100]
   );
 
-  // Z-index: Newer cards on top
   const zIndex = index + 1;
 
   return (
@@ -223,44 +221,49 @@ function ExpertiseCard({
         zIndex,
         transformOrigin: "center top",
         transformStyle: "preserve-3d",
-      }}>
+      }}
+    >
       <div className="expertise-slide h-full">
         <div className="expertise-wrap h-full">
           <div
-            className={`expertise-content ${theme.bg} ${theme.text} h-full flex flex-col lg:flex-row rounded-3xl overflow-hidden group`}>
-            {/* Left Content Section */}
-            <div className="flex-1 lg:flex-[1.3] flex flex-col p-6 md:p-10 lg:p-12 relative">
-              {/* Expertise Label */}
-              <div className="label mb-4">
-                <div
-                  className={`${theme.labelBg} ${theme.labelText} px-3 py-1.5 rounded-lg font-medium text-xs inline-block border border-gray-200`}>
-                  Expertise
+            className={`expertise-content ${theme.bg} ${theme.text} h-full flex flex-col lg:flex-row rounded-3xl overflow-hidden group shadow-2xl `}
+          >
+            {/* 4. LAYOUT UPDATE (Source 2 Structure) */}
+            
+            {/* LEFT SIDE: Content */}
+            <div className="flex-1 lg:flex-[1.2] p-8 md:p-12 lg:p-14 flex flex-col justify-between relative overflow-hidden">
+              
+              {/* Header Section */}
+              <div className="relative z-10">
+                <div className="flex items-center justify-between mb-8">
+                  <span className={`text-sm font-bold tracking-widest uppercase opacity-60`}>
+                    Service {expertise.number}
+                  </span>
+                  <ArrowUpRight className="w-6 h-6 opacity-60" />
                 </div>
+
+                <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4 leading-[1.1]">
+                  {expertise.title}
+                </h2>
+                
+                <h3 className="text-lg md:text-xl font-medium opacity-80 mb-6">
+                  {expertise.subtitle}
+                </h3>
+                
+                <p className="text-sm md:text-base leading-relaxed opacity-70 max-w-md">
+                  {expertise.description}
+                </p>
               </div>
 
-              {/* Title */}
-              <h2 className="expertise-content_heading text-2xl md:text-3xl lg:text-4xl font-bold leading-tight mb-3">
-                {expertise.title}
-              </h2>
-
-              {/* Subtitle */}
-              <h3 className="expertise-subtitle text-base md:text-lg font-semibold text-gray-700 mb-5">
-                {expertise.subtitle}
-              </h3>
-
-              {/* Description */}
-              <p className="expertise-description text-sm md:text-base lg:text-lg text-gray-600 leading-relaxed mb-10 max-w-2xl">
-                {expertise.description}
-              </p>
-
-              {/* Learn More Button - Get Results Style */}
-              <div className="button-wrap mt-auto pb-4 relative z-20">
+              {/* Footer Section: Button (Source 1 Design) */}
+              <div className="relative z-20 pt-8">
                 <motion.a
                   whileHover={{ rotateZ: -3 }}
                   whileTap={{ scale: 0.97 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                   href={expertise.linkHref}
-                  className="inline-flex items-center gap-2.5 bg-white text-black pl-5 pr-1.5 py-1.5 rounded-xl font-semibold text-sm border border-white cursor-pointer origin-center shadow-lg">
+                  className="inline-flex items-center gap-2.5 bg-white text-black pl-5 pr-1.5 py-1.5 rounded-xl font-semibold text-sm border border-white cursor-pointer origin-center shadow-lg"
+                >
                   <span>{expertise.buttonText}</span>
                   <span className="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
                     <svg
@@ -271,87 +274,45 @@ function ExpertiseCard({
                       strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      className="w-4 h-4 text-white">
+                      className="w-4 h-4 text-white"
+                    >
                       <path d="M5 12h14M12 5l7 7-7 7" />
                     </svg>
                   </span>
                 </motion.a>
               </div>
-            </div>
 
-            {/* Right Media Section - Added padding bottom */}
-            <div className="hidden lg:flex expertise-content_img flex-1 items-start justify-center p-8 md:p-10 lg:p-12 pb-16 relative">
-              {" "}
-              {/* Added pb-16 for bottom padding */}
-              <div className="absolute top-8 right-8 z-20">
-                <div className="expertise-content_number flex text-4xl md:text-5xl lg:text-6xl font-bold">
-                  <div className="opacity-50">0</div>
-                  <div>{expertise.id}</div>
-                </div>
-              </div>
-              {/* Media Container with proper bottom spacing */}
-              <div className="medium-image w-full h-80 max-w-sm rounded-3xl overflow-hidden bg-gray-200 mt-16 mb-4">
-                {" "}
-                {/* Added mb-4 and reduced height to h-80 */}
-                {expertise.mediaType === "video" ? (
-                  <video
-                    src={expertise.mediaUrl}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="w-full h-full object-cover"
-                    aria-label={`${expertise.title} video`}
-                  />
-                ) : (
-                  <img
-                    src={expertise.mediaUrl || "/placeholder.svg"}
-                    alt={`${expertise.title} preview`}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                )}
+              {/* Giant Number Background (Source 2 Style using Source 1 Colors) */}
+              <div 
+                className={`absolute -bottom-4 right-4 text-[10rem] md:text-[14rem] font-bold leading-none pointer-events-none select-none tracking-tighter ${theme.numberText} opacity-100`}
+                style={{ zIndex: 0 }}
+              >
+                {expertise.id}
               </div>
             </div>
 
-            {/* Mobile Media */}
-            <div className="expertise-content_img lg:hidden mb-8 px-8">
-              <div className="medium-image w-full h-64 rounded-2xl overflow-hidden bg-gray-200">
-                {expertise.mediaType === "video" ? (
-                  <video
-                    src={expertise.mediaUrl}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="w-full h-full object-cover"
-                    aria-label={`${expertise.title} video`}
-                  />
-                ) : (
-                  <img
-                    src={expertise.mediaUrl || "/placeholder.svg"}
-                    alt={`${expertise.title} preview`}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                )}
-              </div>
+            {/* RIGHT SIDE: Media (Source 2 Structure - Full Height) */}
+            <div className="relative w-full lg:w-[45%] h-64 lg:h-full overflow-hidden">
+              {expertise.mediaType === "video" ? (
+                <video
+                  src={expertise.mediaUrl}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              ) : (
+                <img
+                  src={expertise.mediaUrl}
+                  alt={expertise.title}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              )}
+              {/* Optional Inner border for media separation */}
+              <div className="absolute inset-0 border-l border-black/5 pointer-events-none hidden lg:block"></div>
             </div>
 
-            {/* Mobile Number */}
-            <div className="lg:hidden absolute top-8 right-8 z-20">
-              <div className="expertise-content_number flex text-3xl font-bold">
-                <div className="opacity-50">0</div>
-                <div>{expertise.id}</div>
-              </div>
-            </div>
-
-            {/* Overlay link for entire card */}
-            <a
-              aria-label={`${expertise.title} expertise link`}
-              href={expertise.linkHref}
-              className="expertise-link absolute inset-0 z-10"
-            />
           </div>
         </div>
       </div>
@@ -373,33 +334,27 @@ export default function Expertises(): React.JSX.Element {
       ref={containerRef}
       id="expertises"
       className="section_expertises relative bg-white z-10"
-      style={{ minHeight: `${n * 100}vh` }}>
-      {/* Intro Text Section */}
+      style={{ minHeight: `${n * 100}vh` }}
+    >
+      {/* Intro Text Section - Updated Text from Source 2 Idea */}
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 pt-32 md:pt-40 lg:pt-48 pb-16 md:pb-20">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-center max-w-4xl mx-auto">
-          <h2
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black leading-[1.15] tracking-tight mb-6"
-            style={{
-              fontFamily: "'Uni Neue', 'Inter', system-ui, sans-serif",
-            }}>
-            We're not just a branding agency — we're your{" "}
-            <span className="text-yellow-400">
-              creative and digital partner
-            </span>
-            .
+          className="text-center max-w-4xl mx-auto"
+        >
+          <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-black mb-6">
+            We build systems,<br /> not just <span className="text-yellow-400">beautiful logos.</span>
           </h2>
-          <p className="text-lg sm:text-xl md:text-2xl text-black/70 font-medium">
-            Here's what we help you build, grow, and manage:
+          <p className="text-lg md:text-xl text-black/70 font-medium">
+          Here’s what we help you build, grow, and manage:
           </p>
         </motion.div>
       </div>
 
-      {/* Sticky container with card stack */}
+      {/* Sticky container with card stack (Source 1 Logic) */}
       <div className="sticky top-0 min-h-screen flex items-center justify-center overflow-hidden py-8">
         <div className="padding-global w-full">
           <div className="container-col-12 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -410,7 +365,8 @@ export default function Expertises(): React.JSX.Element {
                 style={{
                   perspective: "1500px",
                   perspectiveOrigin: "center 30%",
-                }}>
+                }}
+              >
                 {expertises.map((expertise, index) => (
                   <ExpertiseCard
                     key={expertise.id}

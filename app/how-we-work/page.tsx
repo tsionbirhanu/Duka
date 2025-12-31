@@ -6,7 +6,7 @@ import Header from "@/components/header";
 import Footer from "@/components/footer";
 import HowWeWork from "@/components/how-we-work";
 
-export default function HowWeWorkPage(): React.JSX.Element {
+export default function HowWeWorkPage(): React.ReactNode {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -18,8 +18,9 @@ export default function HowWeWorkPage(): React.JSX.Element {
     <motion.main
       initial={{ opacity: 0 }}
       animate={isLoaded ? { opacity: 1 } : { opacity: 0 }}
-      transition={{ duration: 0.45, ease: "easeOut" as const }}
-      className="bg-white text-black min-h-screen">
+      transition={{ duration: 0.45, ease: "easeOut" }}
+      className="bg-white text-black min-h-screen"
+    >
       <Header />
       <div className="pt-20" /> {/* Spacer for fixed header */}
       <HowWeWork />
@@ -27,3 +28,4 @@ export default function HowWeWorkPage(): React.JSX.Element {
     </motion.main>
   );
 }
+
