@@ -89,7 +89,7 @@ export default function Works() {
                 duration: 15, // ⚡ Faster speed (was 40)
                 repeat: Infinity,
                 repeatType: "loop",
-                ease: "linear",
+                ease: "linear" as const,
               },
             }}>
             {[...logos, ...logos].map((logo, index) => (

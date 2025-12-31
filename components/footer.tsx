@@ -3,15 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import {
-  Linkedin,
-  Instagram,
-  Youtube,
-  Mail,
-  Flame,
-  Music2,
-  Send,
-} from "lucide-react";
+import { Instagram, Mail, Flame, Send } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -105,7 +97,11 @@ export default function Footer() {
           <motion.div
             className="absolute mt-20 right-4 md:-top-12 md:right-[6%] z-30 hidden lg:block"
             animate={{ rotate: 360 }}
-            transition={{ duration: 25, repeat: Infinity, ease: "linear" }}>
+            transition={{
+              duration: 25,
+              repeat: Infinity,
+              ease: "linear" as const,
+            }}>
             <div className="relative w-20 h-20 xl:w-24 xl:h-24">
               <svg viewBox="0 0 200 200" className="w-full h-full">
                 <circle cx="100" cy="100" r="98" fill="#FFD93D" />

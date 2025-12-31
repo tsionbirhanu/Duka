@@ -7,13 +7,12 @@ import Hero from "@/components/hero";
 import ValueSection from "@/components/value-section";
 import Expertises from "@/components/expertises";
 import WhyChooseUs from "@/components/why-choose-us";
-import Works from "@/components/Works";
 import Footer from "@/components/footer";
 import Testimonials from "@/components/testimonials";
 import Brands from "@/components/brands";
 // import FinalCTA from "@/components/final-cta";
 
-export default function Home(): React.ReactNode {
+export default function Home(): React.JSX.Element {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -26,9 +25,8 @@ export default function Home(): React.ReactNode {
     <motion.main
       initial={{ opacity: 0 }}
       animate={isLoaded ? { opacity: 1 } : { opacity: 0 }}
-      transition={{ duration: 0.45, ease: "easeOut" }}
-      className="bg-white text-black min-h-screen"
-    >
+      transition={{ duration: 0.45, ease: "easeOut" as const }}
+      className="bg-white text-black min-h-screen">
       <Header />
       <Hero />
       <ValueSection />

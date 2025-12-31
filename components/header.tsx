@@ -24,7 +24,7 @@ export default function Header() {
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: hidden ? -100 : 0 }}
-      transition={{ duration: 0.3, ease: "easeInOut" }}
+      transition={{ duration: 0.3, ease: "easeInOut" as const }}
       className="fixed top-0 left-0 right-0 z-[100] bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 md:h-20 flex items-center justify-between">
         {/* Logo */}
@@ -33,7 +33,7 @@ export default function Header() {
             <Image
               src="/images/duka-new.png"
               alt="Duka Logo"
-              width={140} 
+              width={140}
               height={40}
               className="object-contain"
               priority
@@ -63,8 +63,7 @@ export default function Header() {
           whileHover={{ rotateZ: -3 }}
           whileTap={{ scale: 0.97 }}
           transition={{ type: "spring", stiffness: 300, damping: 20 }}
-          className="hidden md:flex items-center gap-2.5 bg-yellow-300 text-black pl-5 pr-1 py-1 rounded-xl font-semibold text-sm border border-yellow-300 cursor-pointer origin-center"
-        >
+          className="hidden md:flex items-center gap-2.5 bg-yellow-300 text-black pl-5 pr-1 py-1 rounded-xl font-semibold text-sm border border-yellow-300 cursor-pointer origin-center">
           <span>Get Results</span>
           <span className="flex items-center justify-center w-8 h-8 bg-white rounded-lg text-lg">
             🔥
@@ -118,8 +117,7 @@ export default function Header() {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className="flex items-center justify-center gap-2.5 bg-yellow-300 text-black pl-5 pr-1 py-1 rounded-xl font-semibold text-sm border border-yellow-300 transition-all w-full"
-            onClick={() => setIsOpen(false)}
-          >
+            onClick={() => setIsOpen(false)}>
             <span>Get Results</span>
             <span className="flex items-center justify-center w-8 h-8 bg-white rounded-lg text-lg">
               🔥

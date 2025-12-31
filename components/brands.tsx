@@ -21,7 +21,9 @@ const allBrands = [...brands, ...brands];
 
 export default function Brands() {
   return (
-    <section id="brands" className="relative bg-black py-24 md:py-32 lg:py-40 overflow-hidden">
+    <section
+      id="brands"
+      className="relative bg-black py-24 md:py-32 lg:py-40 overflow-hidden">
       {/* Main Title */}
       <div className="px-6 md:px-12 lg:px-16 mb-16 md:mb-20 lg:mb-24">
         <div className="max-w-5xl mx-auto text-center">
@@ -29,8 +31,7 @@ export default function Brands() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-block px-4 py-2 bg-white/10 text-white text-xs font-medium tracking-wider uppercase rounded-full mb-8"
-          >
+            className="inline-block px-4 py-2 bg-white/10 text-white text-xs font-medium tracking-wider uppercase rounded-full mb-8">
             Our Clients
           </motion.span>
           <motion.h2
@@ -39,8 +40,7 @@ export default function Brands() {
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-[1.1] tracking-tight"
-            style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-          >
+            style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
             Bold brands trust us to bring their{" "}
             <span className="text-yellow-400">vision to life.</span>
           </motion.h2>
@@ -57,19 +57,16 @@ export default function Brands() {
               x: {
                 duration: 30,
                 repeat: Infinity,
-                ease: "linear",
+                ease: "linear" as const,
               },
-            }}
-          >
+            }}>
             {allBrands.map((brand, index) => (
               <div
                 key={`row1-${index}`}
-                className="flex-shrink-0 px-8 md:px-12 py-6 md:py-8 bg-white/5 rounded-2xl border border-white/10 hover:bg-white/10 hover:border-yellow-400/30 transition-all duration-300 group"
-              >
-                <span 
+                className="flex-shrink-0 px-8 md:px-12 py-6 md:py-8 bg-white/5 rounded-2xl border border-white/10 hover:bg-white/10 hover:border-yellow-400/30 transition-all duration-300 group">
+                <span
                   className="text-xl md:text-2xl lg:text-3xl font-bold text-white/70 group-hover:text-yellow-400 transition-colors duration-300 whitespace-nowrap"
-                  style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-                >
+                  style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
                   {brand}
                 </span>
               </div>
@@ -88,19 +85,16 @@ export default function Brands() {
               x: {
                 duration: 35,
                 repeat: Infinity,
-                ease: "linear",
+                ease: "linear" as const,
               },
-            }}
-          >
+            }}>
             {[...allBrands].reverse().map((brand, index) => (
               <div
                 key={`row2-${index}`}
-                className="flex-shrink-0 px-8 md:px-12 py-6 md:py-8 bg-white/5 rounded-2xl border border-white/10 hover:bg-white/10 hover:border-yellow-400/30 transition-all duration-300 group"
-              >
-                <span 
+                className="flex-shrink-0 px-8 md:px-12 py-6 md:py-8 bg-white/5 rounded-2xl border border-white/10 hover:bg-white/10 hover:border-yellow-400/30 transition-all duration-300 group">
+                <span
                   className="text-xl md:text-2xl lg:text-3xl font-bold text-white/70 group-hover:text-yellow-400 transition-colors duration-300 whitespace-nowrap"
-                  style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-                >
+                  style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
                   {brand}
                 </span>
               </div>
@@ -115,4 +109,3 @@ export default function Brands() {
     </section>
   );
 }
-
