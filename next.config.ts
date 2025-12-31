@@ -9,21 +9,28 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "*.unsplash.com", 
+        hostname: "*.unsplash.com",
       },
-       {
+      {
         protocol: "https",
         hostname: "placehold.co",
       },
-       
-    { protocol: "https", hostname: "placehold.co" },
 
-    { protocol: "https", hostname: "via.placeholder.com" },
-    
-    { protocol: "https", hostname: "dummyimage.com" },
-  
+      { protocol: "https", hostname: "placehold.co" },
 
+      { protocol: "https", hostname: "via.placeholder.com" },
+
+      { protocol: "https", hostname: "dummyimage.com" },
     ],
+  },
+  async redirects() {
+    return [
+      {
+        source: "/favicon.ico",
+        destination: "/images/duka.png?v=2",
+        permanent: true,
+      },
+    ];
   },
 };
 

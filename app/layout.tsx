@@ -15,6 +15,20 @@ export const metadata: Metadata = {
   description:
     "Bold brands. Smarter systems. Better results. We help businesses turn ideas into brands.",
   generator: "Next.js",
+  icons: {
+    icon: [
+      { url: "/images/duka.png?v=2", sizes: "64x64", type: "image/png" },
+      { url: "/images/duka.png?v=2", sizes: "192x192", type: "image/png" },
+      { url: "/images/duka.png?v=2", sizes: "256x256", type: "image/png" },
+      { url: "/images/duka.png?v=2", sizes: "512x512", type: "image/png" },
+    ],
+    shortcut: [
+      { url: "/images/duka.png?v=2", sizes: "64x64", type: "image/png" },
+    ],
+    apple: [
+      { url: "/images/duka.png?v=2", sizes: "180x180", type: "image/png" },
+    ],
+  },
 };
 
 export default function RootLayout({
