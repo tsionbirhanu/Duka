@@ -54,7 +54,6 @@ function TeamCard({ member, index }: TeamCardProps) {
     offset: ["start end", "end start"],
   });
 
-  // Different movement directions based on member.direction
   const xMovement = useTransform(
     scrollYProgress,
     [0, 1],
