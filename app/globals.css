@@ -1,6 +1,17 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* Hide scrollbar but keep functionality */
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+  }
+}
+
 /* Uni Neue Trial family (drop the OTF files in /public/fonts/uni-neue/) */
 @font-face {
   font-family: "Uni Neue";
@@ -241,4 +252,36 @@
 
 .clip-path-triangle {
   clip-path: polygon(0 100%, 50% 0, 100% 100%);
+}
+
+/* Large Screen Optimizations */
+@media (min-width: 1920px) {
+  /* Ensure content doesn't get too stretched on ultra-wide screens */
+  body {
+    font-size: 18px;
+  }
+
+  h1 {
+    font-size: clamp(3rem, 8vw, 8rem);
+  }
+
+  h2 {
+    font-size: clamp(2.5rem, 6vw, 6rem);
+  }
+
+  h3 {
+    font-size: clamp(2rem, 4vw, 4rem);
+  }
+}
+
+/* Smooth scrolling for all sections */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Improved text rendering */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }

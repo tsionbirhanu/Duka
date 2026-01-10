@@ -89,32 +89,32 @@ export default function Hero() {
         }}
       />
 
-      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 w-full">
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.15 }}
           variants={containerVariants}
           className="flex flex-col">
-          {/* Small Tagline Above */}
+          {/* Small Tagline Above - Single line on mobile */}
           <motion.div
             variants={itemVariants}
             className="text-center mb-6 md:mb-8">
-            <p className="text-xs sm:text-sm md:text-base font-medium tracking-[0.25em] uppercase text-black/40">
+            <p className="text-xs sm:text-sm md:text-base font-normal tracking-[0.15em] sm:tracking-[0.25em] uppercase text-black/40 px-4">
               {tagline}
             </p>
           </motion.div>
 
-          {/* Main Title - 2 Lines, 2 Colors */}
+          {/* Main Title - 2 Lines on mobile, 2 Lines on desktop */}
           <motion.div
             variants={itemVariants}
-            className="text-center mb-16 md:mb-24 lg:mb-32">
-            <h1 className="mx-auto max-w-full px-4 text-[42px] sm:text-[60px] md:text-[80px] lg:text-[100px] xl:text-[120px] leading-[0.92] font-bold tracking-[-0.03em] relative">
+            className="text-center mb-12 md:mb-24 lg:mb-32">
+            <h1 className="mx-auto max-w-full px-4 text-[36px] sm:text-[48px] md:text-[80px] lg:text-[100px] xl:text-[120px] leading-[1.1] md:leading-[0.92] font-bold tracking-[-0.02em] md:tracking-[-0.03em] relative">
               {/* Line 1 - Black */}
               <span className="block text-black">{mainTitleLine1}</span>
               {/* Line 2 - Yellow with accent styling */}
               <span
-                className="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-amber-400 to-yellow-500 mt-2 md:mt-3"
+                className="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-amber-400 to-yellow-500 mt-1 md:mt-3"
                 style={{
                   textShadow: "0 8px 40px rgba(251,191,36,0.3)",
                 }}>
@@ -124,7 +124,96 @@ export default function Hero() {
           </motion.div>
 
           <motion.div variants={itemVariants} className="relative">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-4 transition-[grid-gap] duration-300">
+            {/* Horizontal scrollable container for mobile */}
+            <div className="lg:hidden overflow-x-auto pb-4 -mx-4 px-4 scrollbar-hide">
+              <div className="flex gap-4 min-w-max">
+                {cards.map((card, index) => {
+                  const isVideoCard = card.mediaType === "video";
+                  const isColorCard = card.mediaType === "color";
+
+                  return (
+                    <motion.button
+                      aria-label={
+                        isVideoCard
+                          ? card.label
+                          : `${card.number} ${card.description}`
+                      }
+                      key={
+                        isVideoCard
+                          ? card.label
+                          : `${card.number}-${card.description}`
+                      }
+                      onClick={() =>
+                        console.log(
+                          "Card Clicked:",
+                          isVideoCard
+                            ? card.label
+                            : `${card.number} ${card.description}`
+                        )
+                      }
+                      whileTap={{ scale: 0.95 }}
+                      className={`relative overflow-hidden rounded-[1.5rem] shadow-lg focus:outline-none focus:ring-4 focus:ring-yellow-400/80 cursor-pointer ${
+                        isColorCard
+                          ? card.backgroundColorClass
+                          : "bg-transparent"
+                      }`}
+                      style={{
+                        width: "280px",
+                        height: "380px",
+                        flexShrink: 0,
+                      }}>
+                      {isVideoCard && (
+                        <div className="absolute inset-0">
+                          <video
+                            key={`vid-${index}`}
+                            src={card.video}
+                            autoPlay
+                            muted
+                            loop
+                            playsInline
+                            className="absolute inset-0 w-full h-full object-cover"
+                          />
+                        </div>
+                      )}
+
+                      {/* Content for Color Cards */}
+                      {isColorCard && (
+                        <div
+                          className={`relative z-30 p-6 w-full h-full flex flex-col justify-between ${card.textColorClass}`}>
+                          <div className="text-left">
+                            <h4 className="text-5xl font-extrabold drop-shadow-md mb-2">
+                              {card.number}
+                            </h4>
+                          </div>
+
+                          {/* Description at bottom left */}
+                          <div className="text-left">
+                            <p className="text-xl font-bold opacity-90 drop-shadow-sm mb-2">
+                              {card.description}
+                            </p>
+                            <div
+                              className={`w-48 h-1 mb-2 ${
+                                card.textColorClass === "text-black"
+                                  ? "bg-black"
+                                  : "bg-yellow-400"
+                              }`}></div>
+                            {/* Additional text line */}
+                            {card.additionalText && (
+                              <p className="text-sm font-medium opacity-80 drop-shadow-sm">
+                                {card.additionalText}
+                              </p>
+                            )}
+                          </div>
+                        </div>
+                      )}
+                    </motion.button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Desktop grid */}
+            <div className="hidden lg:grid grid-cols-4 gap-5 transition-[grid-gap] duration-300 max-w-[1400px] mx-auto">
               {cards.map((card, index) => {
                 const offsetX = computeOffset(index);
                 const isHovered = hoverIndex === index && !isMobile;
@@ -158,26 +247,25 @@ export default function Hero() {
                     layout
                     transition={{ type: "spring", stiffness: 120, damping: 15 }}
                     whileHover={{
-                      scale: isMobile ? 1.0 : 1.1,
-                      y: isMobile ? 0 : -15,
+                      scale: 1.1,
+                      y: -15,
                       boxShadow: "0 40px 80px -12px rgba(0, 0, 0, 0.5)",
                     }}
-                    className={`group relative overflow-hidden rounded-[2rem] shadow-2xl shadow-black/20 focus:outline-none focus:ring-4 focus:ring-yellow-400/80 cursor-pointer transform transition-transform duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                    className={`group relative overflow-hidden rounded-[2rem] shadow-2xl shadow-black/20 focus:outline-none focus:ring-4 focus:ring-yellow-400/80 cursor-pointer transform transition-transform duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] w-full ${
                       isColorCard ? card.backgroundColorClass : "bg-transparent"
                     }`}
                     style={{
                       zIndex: isHovered ? 40 : 10,
-                      minHeight: 400, // Reduced height from 520 to 400
+                      height: "400px",
+                      maxWidth: "320px",
                       display: "flex",
                       flexDirection: "column",
                       justifyContent: isVideoCard
                         ? "flex-end"
                         : "space-between",
-                      transform: isMobile
-                        ? "none"
-                        : `translateX(${offsetX}px) ${
-                            isHovered ? " scale(1.1)" : ""
-                          }`,
+                      transform: `translateX(${offsetX}px) ${
+                        isHovered ? " scale(1.1)" : ""
+                      }`,
                     }}>
                     {isVideoCard && (
                       <div className="absolute inset-0">
@@ -236,12 +324,11 @@ export default function Hero() {
           {/* Subheadline & Description Section */}
           <motion.div
             variants={itemVariants}
-            className="relative w-full bg-white mt-20 md:mt-28 lg:mt-36 py-20 md:py-28 lg:py-32 px-6 md:px-12 lg:px-20 -mx-4 sm:-mx-6 lg:-mx-8"
-            style={{ width: "100vw", marginLeft: "calc(-50vw + 50%)" }}>
+            className="relative w-full bg-white mt-16 md:mt-28 lg:mt-36 py-16 md:py-28 lg:py-32 px-4 sm:px-6 md:px-8 lg:px-12">
             <div className="max-w-6xl mx-auto">
               {/* Main Bold Headline - Inter font with tight leading */}
               <h2
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[52px] font-bold text-black leading-[1.1] tracking-tight max-w-5xl"
+                className="text-xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-[52px] font-bold text-black leading-[1.2] md:leading-[1.1] tracking-tight max-w-5xl"
                 style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
                 We help businesses turn ideas into brands, brands into
                 experiences, and experiences into{" "}
@@ -253,7 +340,7 @@ export default function Hero() {
               </h2>
 
               {/* Bottom Section with Image and Description */}
-              <div className="flex flex-col md:flex-row items-start gap-10 md:gap-20 lg:gap-28 mt-16 md:mt-24">
+              <div className="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-20 lg:gap-28 mt-12 md:mt-24">
                 {/* Image with floating shadow and animation */}
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9, rotate: -2 }}
@@ -273,38 +360,41 @@ export default function Hero() {
                 </motion.div>
 
                 {/* Secondary Description and Button */}
-                <div className="flex-1 flex flex-col justify-center md:pt-8 lg:pt-12">
-                  <p className="text-lg sm:text-xl md:text-2xl lg:text-[26px] font-medium text-black/80 leading-relaxed max-w-xl">
+                <div className="flex-1 flex flex-col justify-center md:pt-8 lg:pt-12 text-center md:text-left">
+                  <p className="text-base sm:text-lg md:text-2xl lg:text-[26px] font-medium text-black/80 leading-relaxed max-w-xl mx-auto md:mx-0">
                     From strategy to design to tech — we make sure your brand
                     doesn&apos;t just exist, it stands out.
                   </p>
 
-                  {/* Buttons - styled like Get Results */}
-                  <div className="mt-10 md:mt-12 flex flex-col sm:flex-row gap-4">
-                    {/* Primary Button - Solid Yellow like Get Results */}
+                  {/* Single Button on mobile, two on desktop */}
+                  <div className="mt-8 md:mt-12 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                     <motion.button
-                      whileHover={{ rotateZ: -2 }}
+                      whileHover={{ rotateZ: -3 }}
                       whileTap={{ scale: 0.97 }}
                       transition={{
                         type: "spring",
                         stiffness: 300,
                         damping: 20,
                       }}
-                      className="group inline-flex items-center gap-2.5 bg-yellow-300 text-black pl-6 pr-1.5 py-1.5 rounded-xl font-semibold text-sm border border-yellow-300 cursor-pointer origin-center">
+                      className="group inline-flex items-center justify-center gap-2.5 bg-yellow-300 text-black pl-5 pr-1 py-1 rounded-xl font-semibold text-sm border border-yellow-300 cursor-pointer origin-center transition-all w-full sm:w-auto">
                       Let&apos;s Build Your Brand
                       <span className="w-8 h-8 bg-white rounded-lg flex items-center justify-center text-lg">
                         🔥
                       </span>
                     </motion.button>
 
-                    {/* Secondary Button - Ghost/Outline style */}
                     <motion.button
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="group inline-flex items-center gap-3 bg-transparent border border-black/20 hover:border-black pl-6 pr-2 py-2 rounded-xl font-semibold text-sm text-black transition-all duration-300 cursor-pointer">
+                      whileHover={{ rotateZ: -3 }}
+                      whileTap={{ scale: 0.97 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 20,
+                      }}
+                      className="hidden sm:inline-flex items-center gap-2.5 bg-black text-white pl-5 pr-1 py-1 rounded-xl font-semibold text-sm border border-black cursor-pointer origin-center transition-all">
                       See Our Work
-                      <span className="w-8 h-8 bg-black rounded-lg flex items-center justify-center group-hover:bg-gray-800 transition-colors">
-                        <ArrowRight size={14} className="text-white" />
+                      <span className="w-8 h-8 bg-white rounded-lg flex items-center justify-center text-black group-hover:bg-gray-100 transition-colors">
+                        <ArrowRight size={14} />
                       </span>
                     </motion.button>
                   </div>
@@ -312,8 +402,8 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* Scroll Down Arrow - Bottom Right */}
-            <div className="absolute bottom-8 right-8 md:bottom-12 md:right-16">
+            {/* Scroll Down Arrow - Bottom Right - Hidden on mobile */}
+            <div className="hidden md:block absolute bottom-8 right-8 md:bottom-12 md:right-16">
               <button className="w-14 h-14 rounded-full border-2 border-black/15 flex items-center justify-center hover:border-black/40 transition-colors duration-300 bg-white/50 backdrop-blur-sm">
                 <svg
                   width="22"

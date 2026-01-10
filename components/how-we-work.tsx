@@ -148,14 +148,7 @@ export default function HowWeWork() {
       <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-12 lg:px-16">
         {/* ===== HEADER ===== */}
         <div className="max-w-3xl mb-20 md:mb-28 lg:mb-36">
-          <motion.span
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-block px-4 py-2 bg-yellow-400 text-black text-xs font-bold tracking-wider uppercase rounded-full mb-8"
-          >
-            Our Process
-          </motion.span>
+          
 
           <motion.h1
             initial={{ opacity: 0, y: 30 }}

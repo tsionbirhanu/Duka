@@ -221,78 +221,81 @@ function ExpertiseCard({
         zIndex,
         transformOrigin: "center top",
         transformStyle: "preserve-3d",
-      }}
-    >
+      }}>
       <div className="expertise-slide h-full">
         <div className="expertise-wrap h-full">
           <div
-            className={`expertise-content ${theme.bg} ${theme.text} h-full flex flex-col lg:flex-row rounded-3xl overflow-hidden group shadow-2xl `}
-          >
-            {/* 4. LAYOUT UPDATE (Source 2 Structure) */}
-            
-            {/* LEFT SIDE: Content */}
-            <div className="flex-1 lg:flex-[1.2] p-8 md:p-12 lg:p-14 flex flex-col justify-between relative overflow-hidden">
-              
+            className={`expertise-content ${theme.bg} ${
+              theme.text
+            } h-full flex flex-col-reverse lg:flex-row rounded-2xl lg:rounded-3xl overflow-hidden group ${
+              isLastCard ? "" : "shadow-2xl"
+            } `}>
+            {/* LEFT SIDE (Desktop) / BOTTOM SIDE (Mobile): Content */}
+            <div className="flex-1 lg:flex-[1.2] p-5 sm:p-8 md:p-12 lg:p-14 flex flex-col justify-between relative overflow-hidden h-[65%] lg:h-auto">
               {/* Header Section */}
-              <div className="relative z-10">
-                <div className="flex items-center justify-between mb-8">
-                  <span className={`text-sm font-bold tracking-widest uppercase opacity-60`}>
-                    Service {expertise.number}
-                  </span>
-                  <ArrowUpRight className="w-6 h-6 opacity-60" />
+              <div className="relative z-10 flex flex-col h-full justify-between lg:justify-start">
+                <div>
+                  <div className="flex items-center justify-between mb-3 sm:mb-6 lg:mb-8">
+                    <span className="text-[10px] sm:text-xs md:text-sm font-bold tracking-widest uppercase opacity-60">
+                      Service {expertise.number}
+                    </span>
+                    <ArrowUpRight className="w-5 h-5 sm:w-6 sm:h-6 opacity-60" />
+                  </div>
+
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-2 sm:mb-3 md:mb-4 leading-tight lg:leading-[1.1]">
+                    {expertise.title}
+                  </h2>
+
+                  <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-medium opacity-80 mb-3 sm:mb-4 md:mb-6 leading-snug">
+                    {expertise.subtitle}
+                  </h3>
+
+                  {/* Full description on larger screens */}
+                  <p className="text-sm md:text-base leading-relaxed opacity-70 max-w-md hidden sm:block">
+                    {expertise.description}
+                  </p>
+                  {/* Truncated description on mobile */}
+                  <p className="text-xs leading-relaxed opacity-70 max-w-md block sm:hidden line-clamp-3">
+                    {expertise.description}
+                  </p>
                 </div>
 
-                <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4 leading-[1.1]">
-                  {expertise.title}
-                </h2>
-                
-                <h3 className="text-lg md:text-xl font-medium opacity-80 mb-6">
-                  {expertise.subtitle}
-                </h3>
-                
-                <p className="text-sm md:text-base leading-relaxed opacity-70 max-w-md">
-                  {expertise.description}
-                </p>
+                {/* Footer Section: Button */}
+                <div className="pt-4 sm:pt-6 lg:pt-8">
+                  <motion.a
+                    whileHover={{ rotateZ: -3 }}
+                    whileTap={{ scale: 0.97 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                    href={expertise.linkHref}
+                    className="inline-flex items-center gap-2 sm:gap-2.5 bg-white text-black pl-4 sm:pl-5 pr-1.5 py-1.5 rounded-xl font-semibold text-xs sm:text-sm border border-white cursor-pointer origin-center shadow-lg hover:shadow-xl transition-shadow">
+                    <span className="leading-none">{expertise.buttonText}</span>
+                    <span className="w-7 h-7 sm:w-8 sm:h-8 bg-black rounded-lg flex items-center justify-center flex-shrink-0">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                      </svg>
+                    </span>
+                  </motion.a>
+                </div>
               </div>
 
-              {/* Footer Section: Button (Source 1 Design) */}
-              <div className="relative z-20 pt-8">
-                <motion.a
-                  whileHover={{ rotateZ: -3 }}
-                  whileTap={{ scale: 0.97 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  href={expertise.linkHref}
-                  className="inline-flex items-center gap-2.5 bg-white text-black pl-5 pr-1.5 py-1.5 rounded-xl font-semibold text-sm border border-white cursor-pointer origin-center shadow-lg"
-                >
-                  <span>{expertise.buttonText}</span>
-                  <span className="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="w-4 h-4 text-white"
-                    >
-                      <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
-                  </span>
-                </motion.a>
-              </div>
-
-              {/* Giant Number Background (Source 2 Style using Source 1 Colors) */}
-              <div 
-                className={`absolute -bottom-4 right-4 text-[10rem] md:text-[14rem] font-bold leading-none pointer-events-none select-none tracking-tighter ${theme.numberText} opacity-100`}
-                style={{ zIndex: 0 }}
-              >
+              {/* Giant Number Background - Mobile optimized */}
+              <div
+                className={`absolute -bottom-4 lg:bottom-[-2rem] -right-4 lg:right-4 text-[8rem] lg:text-[14rem] font-bold leading-none pointer-events-none select-none tracking-tighter ${theme.numberText} opacity-40 lg:opacity-100`}
+                style={{ zIndex: 0 }}>
                 {expertise.id}
               </div>
             </div>
 
-            {/* RIGHT SIDE: Media (Source 2 Structure - Full Height) */}
-            <div className="relative w-full lg:w-[45%] h-64 lg:h-full overflow-hidden">
+            {/* RIGHT SIDE (Desktop) / TOP SIDE (Mobile): Media */}
+            <div className="relative w-full lg:w-[45%] h-[35%] lg:h-full overflow-hidden flex-shrink-0">
               {expertise.mediaType === "video" ? (
                 <video
                   src={expertise.mediaUrl}
@@ -309,10 +312,9 @@ function ExpertiseCard({
                   className="absolute inset-0 w-full h-full object-cover"
                 />
               )}
-              {/* Optional Inner border for media separation */}
-              <div className="absolute inset-0 border-l border-black/5 pointer-events-none hidden lg:block"></div>
+              {/* Inner border/overlay */}
+              <div className="absolute inset-0 bg-black/5 lg:border-l lg:border-black/5 pointer-events-none"></div>
             </div>
-
           </div>
         </div>
       </div>
@@ -334,49 +336,46 @@ export default function Expertises(): React.JSX.Element {
       ref={containerRef}
       id="expertises"
       className="section_expertises relative bg-white z-10"
-      style={{ minHeight: `${n * 100}vh` }}
-    >
-      {/* Intro Text Section - Updated Text from Source 2 Idea */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 pt-32 md:pt-40 lg:pt-48 pb-16 md:pb-20">
+      style={{ minHeight: `${n * 100}vh` }}>
+      {/* Intro Text Section - Professional and responsive */}
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-32 md:pt-40 lg:pt-48 pb-8 sm:pb-16 md:pb-20">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-center max-w-4xl mx-auto"
-        >
-          <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-black mb-6">
-            We build systems,<br /> not just <span className="text-yellow-400">beautiful logos.</span>
+          className="text-center max-w-4xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-black mb-4 leading-tight">
+            We build systems,
+            <br className="hidden sm:block" /> not just{" "}
+            <span className="text-yellow-400">beautiful logos.</span>
           </h2>
-          <p className="text-lg md:text-xl text-black/70 font-medium">
-          Here’s what we help you build, grow, and manage:
+          <p className="text-sm sm:text-base md:text-xl text-black/70 font-medium px-2 sm:px-4 whitespace-nowrap overflow-hidden text-ellipsis sm:whitespace-normal">
+            Here's what we help you build, grow, and manage:
           </p>
         </motion.div>
       </div>
 
-      {/* Sticky container with card stack (Source 1 Logic) */}
-      <div className="sticky top-0 min-h-screen flex items-center justify-center overflow-hidden py-8">
-        <div className="padding-global w-full">
-          <div className="container-col-12 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="expertises-collection w-full">
-              <div
-                role="list"
-                className="expertises-list relative h-[90vh] w-full"
-                style={{
-                  perspective: "1500px",
-                  perspectiveOrigin: "center 30%",
-                }}
-              >
-                {expertises.map((expertise, index) => (
-                  <ExpertiseCard
-                    key={expertise.id}
-                    expertise={expertise}
-                    index={index}
-                    totalCards={n}
-                    scrollYProgress={scrollYProgress}
-                  />
-                ))}
-              </div>
+      {/* Sticky container with card stack */}
+      <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden py-4 sm:py-6">
+        <div className="w-full h-full px-4 sm:px-6 lg:px-8 max-w-[1400px] mx-auto">
+          <div className="relative w-full h-full flex items-center justify-center">
+            <div
+              role="list"
+              className="relative w-full h-[85vh] sm:h-[80vh] md:h-[85vh] lg:h-[85vh]"
+              style={{
+                perspective: "1500px",
+                perspectiveOrigin: "center 30%",
+              }}>
+              {expertises.map((expertise, index) => (
+                <ExpertiseCard
+                  key={expertise.id}
+                  expertise={expertise}
+                  index={index}
+                  totalCards={n}
+                  scrollYProgress={scrollYProgress}
+                />
+              ))}
             </div>
           </div>
         </div>

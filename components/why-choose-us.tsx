@@ -4,7 +4,11 @@ import React, { useRef } from "react";
 import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
 
 const statements = [
-  { id: 1, text: "solve real problems.", sub: "Strategy first, pixels second." },
+  {
+    id: 1,
+    text: "solve real problems.",
+    sub: "Strategy first, pixels second.",
+  },
   { id: 2, text: "understand you.", sub: "We dive deep before we design." },
   { id: 3, text: "speak clearly.", sub: "No jargon. Just results." },
   { id: 4, text: "deliver on time.", sub: "Your deadline is our religion." },
@@ -24,36 +28,56 @@ function StatementItem({
   progress: MotionValue<number>;
   total: number;
 }) {
+  // Mobile: Adjusted range to make transitions snappier on shorter scroll
   const rangeStart = i / total;
   const rangeEnd = (i + 1) / total;
 
-  const opacity = useTransform(progress, [rangeStart, rangeStart + 0.1, rangeEnd - 0.1, rangeEnd], [0, 1, 1, 0]);
-  const rotateX = useTransform(progress, [rangeStart, rangeStart + 0.1, rangeEnd - 0.1, rangeEnd], [80, 0, 0, -80]);
-  const y = useTransform(progress, [rangeStart, rangeStart + 0.1, rangeEnd - 0.1, rangeEnd], [60, 0, 0, -60]);
+  // 3D Flip Logic
+  const opacity = useTransform(
+    progress,
+    [rangeStart, rangeStart + 0.1, rangeEnd - 0.1, rangeEnd],
+    [0, 1, 1, 0]
+  );
+  
+  // Reduced rotation intensity for mobile to ensure readability
+  const rotateX = useTransform(
+    progress,
+    [rangeStart, rangeStart + 0.1, rangeEnd - 0.1, rangeEnd],
+    [45, 0, 0, -45] 
+  );
+  
+  const y = useTransform(
+    progress,
+    [rangeStart, rangeStart + 0.1, rangeEnd - 0.1, rangeEnd],
+    [40, 0, 0, -40]
+  );
 
   return (
     <motion.div
-      style={{ 
-        opacity, 
-        rotateX, 
+      style={{
+        opacity,
+        rotateX,
         y,
-        transformStyle: "preserve-3d" 
+        transformStyle: "preserve-3d",
       }}
-      className="absolute inset-0 flex flex-col justify-center will-change-transform"
+      className="absolute inset-0 flex flex-col justify-center lg:justify-center will-change-transform origin-bottom lg:origin-center"
     >
-      <h3 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter text-black leading-[0.9] uppercase">
+      <h3 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter text-black leading-[0.95] sm:leading-[0.9] uppercase">
         {text}
       </h3>
-      <p className="mt-6 text-lg md:text-2xl text-black/40 font-medium tracking-tight max-w-md">
+      <p className="mt-4 sm:mt-6 text-base sm:text-lg md:text-2xl text-black/50 font-medium tracking-tight max-w-[80%] lg:max-w-md">
         {sub}
       </p>
 
-      <div className="mt-10 flex items-center gap-1.5">
+      {/* Progress Indicators - Adjusted for Mobile Layout */}
+      <div className="mt-8 lg:mt-10 flex items-center gap-2">
         {statements.map((_, index) => (
-          <div 
+          <div
             key={index}
-            className={`h-1 rounded-full transition-all duration-500 ${
-              index === i ? "w-8 bg-yellow-400" : "w-4 bg-black/10"
+            className={`h-1.5 rounded-full transition-all duration-500 ${
+              index === i 
+                ? "w-8 sm:w-10 bg-[#FFD93D]" // Brand Highlight Color
+                : "w-2 bg-black/10"
             }`}
           />
         ))}
@@ -70,26 +94,26 @@ export default function WhyChooseUs() {
   });
 
   return (
-    <section 
-      ref={containerRef} 
-      className="relative bg-white text-black min-h-[500vh]"
+    <section
+      ref={containerRef}
+      className="relative bg-white text-black min-h-[350vh] md:min-h-[500vh]" // Reduced height on mobile for better UX
     >
-      <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden">
-        {/* Changed to justify-between and max-w-[1600px] to match reference image layout */}
-        <div className="max-w-[1600px] w-full mx-auto px-6 md:px-12 lg:px-24 flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-32">
+      <div className="sticky top-0 h-screen w-full overflow-hidden">
+        <div className="max-w-[1600px] w-full mx-auto px-6 sm:px-8 lg:px-12 h-full flex flex-col justify-center lg:flex-row lg:items-center lg:justify-between gap-4 lg:gap-32">
           
-          {/* Left Side: "We" pushed to the far left */}
-          <div className="lg:w-auto">
-            <h3 className="text-[10rem] md:text-[16rem] lg:text-[22rem] font-black leading-none tracking-tighter text-black select-none">
+          {/* Left Side: "WE" Anchor */}
+          {/* Mobile: Pushed to top-left to form a sentence starter */}
+          <div className="flex-shrink-0 lg:w-auto relative z-10 pt-10 lg:pt-0">
+            <h3 className="text-[6rem] sm:text-[10rem] md:text-[16rem] lg:text-[20rem] font-black leading-none tracking-tighter text-black/90 select-none">
               We
             </h3>
           </div>
 
-          {/* Right Side: Animated Statements pushed to the far right */}
-          {/* Added max-w-2xl to the container to keep content readable but spaced far out */}
-          <div 
-            className="lg:w-1/2 relative h-[400px] w-full max-w-2xl"
-            style={{ perspective: "1200px" }}
+          {/* Right Side: Animated Statements */}
+          {/* Mobile: Aligned left to match "We", creating a vertical sentence flow */}
+          <div
+            className="flex-grow lg:w-1/2 relative h-[250px] sm:h-[300px] lg:h-[400px] w-full max-w-4xl"
+            style={{ perspective: "1000px" }}
           >
             {statements.map((s, i) => (
               <StatementItem
@@ -102,7 +126,6 @@ export default function WhyChooseUs() {
               />
             ))}
           </div>
-          
         </div>
       </div>
     </section>
