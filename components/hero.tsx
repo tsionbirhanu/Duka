@@ -116,7 +116,7 @@ export default function Hero() {
               <span
                 className="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-amber-400 to-yellow-500 mt-1 md:mt-3"
                 style={{
-                  textShadow: "0 8px 40px rgba(251,191,36,0.3)",
+                  textShadow: "none",
                 }}>
                 {mainTitleLine2}
               </span>
@@ -152,7 +152,7 @@ export default function Hero() {
                         )
                       }
                       whileTap={{ scale: 0.95 }}
-                      className={`relative overflow-hidden rounded-[1.5rem] shadow-lg focus:outline-none focus:ring-4 focus:ring-yellow-400/80 cursor-pointer ${
+                      className={`relative overflow-hidden rounded-[1.5rem] focus:outline-none focus:ring-4 focus:ring-yellow-400/80 cursor-pointer ${
                         isColorCard
                           ? card.backgroundColorClass
                           : "bg-transparent"
@@ -181,14 +181,14 @@ export default function Hero() {
                         <div
                           className={`relative z-30 p-6 w-full h-full flex flex-col justify-between ${card.textColorClass}`}>
                           <div className="text-left">
-                            <h4 className="text-5xl font-extrabold drop-shadow-md mb-2">
+                            <h4 className="text-5xl font-extrabold mb-2">
                               {card.number}
                             </h4>
                           </div>
 
                           {/* Description at bottom left */}
                           <div className="text-left">
-                            <p className="text-xl font-bold opacity-90 drop-shadow-sm mb-2">
+                            <p className="text-xl font-bold opacity-90 mb-2">
                               {card.description}
                             </p>
                             <div
@@ -199,7 +199,7 @@ export default function Hero() {
                               }`}></div>
                             {/* Additional text line */}
                             {card.additionalText && (
-                              <p className="text-sm font-medium opacity-80 drop-shadow-sm">
+                              <p className="text-sm font-medium opacity-80">
                                 {card.additionalText}
                               </p>
                             )}
@@ -249,9 +249,9 @@ export default function Hero() {
                     whileHover={{
                       scale: 1.1,
                       y: -15,
-                      boxShadow: "0 40px 80px -12px rgba(0, 0, 0, 0.5)",
+                      boxShadow: "none",
                     }}
-                    className={`group relative overflow-hidden rounded-[2rem] shadow-2xl shadow-black/20 focus:outline-none focus:ring-4 focus:ring-yellow-400/80 cursor-pointer transform transition-transform duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] w-full ${
+                    className={`group relative overflow-hidden rounded-[2rem] focus:outline-none focus:ring-4 focus:ring-yellow-400/80 cursor-pointer transform transition-transform duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] w-full ${
                       isColorCard ? card.backgroundColorClass : "bg-transparent"
                     }`}
                     style={{
@@ -290,14 +290,14 @@ export default function Hero() {
                       <div
                         className={`relative z-30 p-8 w-full h-full flex flex-col justify-between ${card.textColorClass}`}>
                         <div className="text-left">
-                          <h4 className="text-5xl sm:text-6xl font-extrabold drop-shadow-md mb-2">
+                          <h4 className="text-5xl sm:text-6xl font-extrabold mb-2">
                             {card.number}
                           </h4>
                         </div>
 
                         {/* Description at bottom left */}
                         <div className="text-left">
-                          <p className="text-xl sm:text-2xl font-bold opacity-90 drop-shadow-sm mb-2">
+                          <p className="text-xl sm:text-2xl font-bold opacity-90 mb-2">
                             {card.description}
                           </p>
                           <div
@@ -308,7 +308,7 @@ export default function Hero() {
                             }`}></div>
                           {/* Additional text line */}
                           {card.additionalText && (
-                            <p className="text-base sm:text-lg font-medium opacity-80 drop-shadow-sm">
+                            <p className="text-base sm:text-lg font-medium opacity-80">
                               {card.additionalText}
                             </p>
                           )}
@@ -334,7 +334,7 @@ export default function Hero() {
                 experiences, and experiences into{" "}
                 <span
                   className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-amber-400 to-yellow-500"
-                  style={{ textShadow: "0 4px 20px rgba(251,191,36,0.3)" }}>
+                  style={{ textShadow: "none" }}>
                   growth.
                 </span>
               </h2>
@@ -349,8 +349,7 @@ export default function Hero() {
                   transition={{ duration: 0.6, ease: "easeOut" }}
                   className="w-48 h-56 md:w-64 md:h-72 lg:w-72 lg:h-80 bg-[#F5E6D3] rounded-[2.5rem] overflow-hidden flex-shrink-0 mx-auto md:mx-0 group"
                   style={{
-                    boxShadow:
-                      "0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 12px 24px -8px rgba(0, 0, 0, 0.1)",
+                    boxShadow: "none",
                   }}>
                   <img
                     src="/images/image.png"

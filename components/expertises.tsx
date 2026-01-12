@@ -227,13 +227,11 @@ function ExpertiseCard({
           <div
             className={`expertise-content ${theme.bg} ${
               theme.text
-            } h-full flex flex-col-reverse lg:flex-row rounded-2xl lg:rounded-3xl overflow-hidden group ${
-              isLastCard ? "" : "shadow-2xl"
-            } `}>
+            } h-full flex flex-col-reverse lg:flex-row rounded-2xl lg:rounded-3xl overflow-hidden group ${""} `}>
             {/* LEFT SIDE (Desktop) / BOTTOM SIDE (Mobile): Content */}
-            <div className="flex-1 lg:flex-[1.2] p-5 sm:p-8 md:p-12 lg:p-14 flex flex-col justify-between relative overflow-hidden h-[65%] lg:h-auto">
+            <div className="flex-1 lg:flex-[1.2] p-5 sm:p-8 md:p-12 lg:p-14 flex flex-col justify-between relative overflow-visible h-[65%] lg:h-auto">
               {/* Header Section */}
-              <div className="relative z-10 flex flex-col h-full justify-between lg:justify-start">
+              <div className="relative z-10 flex flex-col h-full justify-between">
                 <div>
                   <div className="flex items-center justify-between mb-3 sm:mb-6 lg:mb-8">
                     <span className="text-[10px] sm:text-xs md:text-sm font-bold tracking-widest uppercase opacity-60">
@@ -242,32 +240,44 @@ function ExpertiseCard({
                     <ArrowUpRight className="w-5 h-5 sm:w-6 sm:h-6 opacity-60" />
                   </div>
 
-                  <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-2 sm:mb-3 md:mb-4 leading-tight lg:leading-[1.1]">
+                  <h2
+                    className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-2 sm:mb-3 md:mb-4 leading-tight lg:leading-[1.1]"
+                    style={{
+                      fontFamily: "'Uni Neue', 'Inter', system-ui, sans-serif",
+                    }}>
                     {expertise.title}
                   </h2>
 
-                  <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-medium opacity-80 mb-3 sm:mb-4 md:mb-6 leading-snug">
+                  <h3
+                    className="text-sm sm:text-base md:text-lg lg:text-xl font-medium opacity-80 mb-3 sm:mb-4 md:mb-6 leading-snug"
+                    style={{
+                      fontFamily: "'Uni Neue', 'Inter', system-ui, sans-serif",
+                    }}>
                     {expertise.subtitle}
                   </h3>
 
                   {/* Full description on larger screens */}
-                  <p className="text-sm md:text-base leading-relaxed opacity-70 max-w-md hidden sm:block">
+                  <p
+                    className="text-sm md:text-base leading-relaxed opacity-70 max-w-md hidden sm:block"
+                    style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
                     {expertise.description}
                   </p>
                   {/* Truncated description on mobile */}
-                  <p className="text-xs leading-relaxed opacity-70 max-w-md block sm:hidden line-clamp-3">
+                  <p
+                    className="text-xs leading-relaxed opacity-70 max-w-md block sm:hidden line-clamp-3"
+                    style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
                     {expertise.description}
                   </p>
                 </div>
 
                 {/* Footer Section: Button */}
-                <div className="pt-4 sm:pt-6 lg:pt-8">
+                <div className="pt-8 lg:pt-8 pb-2">
                   <motion.a
                     whileHover={{ rotateZ: -3 }}
                     whileTap={{ scale: 0.97 }}
                     transition={{ type: "spring", stiffness: 300, damping: 20 }}
                     href={expertise.linkHref}
-                    className="inline-flex items-center gap-2 sm:gap-2.5 bg-white text-black pl-4 sm:pl-5 pr-1.5 py-1.5 rounded-xl font-semibold text-xs sm:text-sm border border-white cursor-pointer origin-center shadow-lg hover:shadow-xl transition-shadow">
+                    className="inline-flex items-center gap-2 sm:gap-2.5 bg-white text-black pl-4 sm:pl-5 pr-1.5 py-1.5 rounded-xl font-semibold text-xs sm:text-sm border border-white cursor-pointer origin-center">
                     <span className="leading-none">{expertise.buttonText}</span>
                     <span className="w-7 h-7 sm:w-8 sm:h-8 bg-black rounded-lg flex items-center justify-center flex-shrink-0">
                       <svg
@@ -345,12 +355,17 @@ export default function Expertises(): React.JSX.Element {
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center max-w-4xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-black mb-4 leading-tight">
-            We build systems,
-            <br className="hidden sm:block" /> not just{" "}
+          <h2
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight text-black mb-6 leading-[1.1]"
+            style={{
+              fontFamily: "'Uni Neue', 'Inter', system-ui, sans-serif",
+            }}>
+            We build systems, not just{" "}
             <span className="text-yellow-400">beautiful logos.</span>
           </h2>
-          <p className="text-sm sm:text-base md:text-xl text-black/70 font-medium px-2 sm:px-4 whitespace-nowrap overflow-hidden text-ellipsis sm:whitespace-normal">
+          <p
+            className="text-base sm:text-lg md:text-xl lg:text-2xl text-black/60 font-normal max-w-3xl mx-auto"
+            style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
             Here's what we help you build, grow, and manage:
           </p>
         </motion.div>

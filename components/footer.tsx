@@ -164,7 +164,7 @@ export default function Footer() {
 
               {/* Navigation Links */}
               <div className="flex flex-wrap justify-center gap-1.5 mt-3">
-                {["Expertises", "Work", "About", "Contact"].map((item) => (
+                {["Home", "Services", "How We Work", "About Us"].map((item) => (
                   <motion.div
                     key={item}
                     whileHover={{ rotateZ: -2 }}
@@ -248,7 +248,7 @@ export default function Footer() {
               <div className="flex flex-col lg:flex-row gap-6 lg:gap-12 justify-end items-end ml-auto lg:ml-[200px]">
                 <div className="flex-1 flex flex-col gap-4 items-start lg:items-center justify-end mt-17 -mr-70">
                   <div className="flex flex-wrap gap-2">
-                    {["Home", "Services", "Work", "Contact"].map((item) => (
+                    {["Home", "Services", "How We Work", "About Us"].map((item) => (
                       <motion.div
                         key={item}
                         whileHover={{ rotateZ: -2 }}

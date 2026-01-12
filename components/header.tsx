@@ -44,10 +44,10 @@ export default function Header() {
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-1">
           {[
-            { label: "Expertises", href: "/#expertises" },
+            { label: "Home", href: "/" },
+            { label: "Services", href: "/services" },
             { label: "How We Work", href: "/how-we-work" },
-            { label: "About", href: "/about" },
-            { label: "Contact", href: "/#contact" },
+            { label: "About Us", href: "/about" },
           ].map((item) => (
             <Link
               key={item.href}
@@ -100,10 +100,10 @@ export default function Header() {
         className="md:hidden bg-white border-t border-black/5 overflow-hidden">
         <div className="px-4 py-4 flex flex-col gap-4 text-sm">
           {[
-            { label: "Expertises", href: "/#expertises" },
+            { label: "Home", href: "/" },
+            { label: "Services", href: "/services" },
             { label: "How We Work", href: "/how-we-work" },
-            { label: "About", href: "/about" },
-            { label: "Contact", href: "/#contact" },
+            { label: "About Us", href: "/about" },
           ].map((item) => (
             <Link
               key={item.href}
