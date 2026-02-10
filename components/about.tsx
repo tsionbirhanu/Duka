@@ -136,10 +136,11 @@ function TeamCard({ member }: { member: TeamMember }) {
         {/* Info Section */}
         <div className="p-6 md:p-8 bg-white">
           <h3
-            className="text-xl md:text-2xl font-bold text-black mb-1"
+            className="font-bold text-black mb-1 truncate"
             style={{
               fontFamily:
                 "'uni neue-trial', 'Uni Neue', 'Inter', system-ui, sans-serif",
+              fontSize: "clamp(1.125rem, 2vw, 1.5rem)",
             }}>
             {member.name}
           </h3>
@@ -191,9 +192,10 @@ export default function About() {
                 </span>
               </TextReveal>
               <h1
-                className="text-7xl md:text-8xl lg:text-[9.5rem] font-black tracking-tighter leading-[0.8]"
+                className="font-black tracking-tighter leading-[0.8]"
                 style={{
                   fontFamily: "'uni neue-trial', 'Uni Neue', sans-serif",
+                  fontSize: "clamp(4rem, 12vw, 9.5rem)",
                 }}>
                 WHO <br />
                 WE ARE
@@ -269,9 +271,10 @@ export default function About() {
           <div className="text-center mb-16 md:mb-32">
             <TextReveal>
               <h3
-                className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-4"
+                className="font-black uppercase tracking-tighter mb-4"
                 style={{
                   fontFamily: "'uni neue-trial', 'Uni Neue', sans-serif",
+                  fontSize: "clamp(2.5rem, 8vw, 8rem)",
                 }}>
                 Meet the <span className="text-yellow-400">People</span>
               </h3>
@@ -322,21 +325,22 @@ export default function About() {
             </div>
           </motion.div>
         </div>
+      </div>
 
-        {/* ================= SECTION 3: CENTERED DUKA WATERMARK ================= */}
-        <div className="relative h-[40vh] flex items-center justify-center pointer-events-none">
-          <motion.div
-            style={{ y: watermarkY, opacity: watermarkOpacity }}
-            className="w-full text-center">
-            <span
-              className="text-[32vw] font-black leading-none tracking-tighter select-none"
-              style={{
-                fontFamily: "'uni neue-trial', 'Uni Neue', sans-serif",
-              }}>
-              DUKA
-            </span>
-          </motion.div>
-        </div>
+      {/* ================= SECTION 3: CENTERED DUKA WATERMARK ================= */}
+      <div className="relative h-[40vh] flex items-center justify-center pointer-events-none overflow-hidden">
+        <motion.div
+          style={{ y: watermarkY, opacity: watermarkOpacity }}
+          className="w-full text-center">
+          <span
+            className="font-black leading-none tracking-tighter select-none inline-block w-full"
+            style={{
+              fontFamily: "'uni neue-trial', 'Uni Neue', sans-serif",
+              fontSize: "clamp(15rem, 30vw, 40rem)",
+            }}>
+            DUKA
+          </span>
+        </motion.div>
       </div>
     </section>
   );

@@ -301,8 +301,11 @@ function ExpertiseCard({
 
               {/* Giant Number Background - Mobile optimized */}
               <div
-                className={`absolute -bottom-4 lg:bottom-[-2rem] -right-4 lg:right-4 text-[8rem] lg:text-[14rem] font-bold leading-none pointer-events-none select-none tracking-tighter ${theme.numberText} opacity-40 lg:opacity-100`}
-                style={{ zIndex: 0 }}>
+                className={`absolute -bottom-4 lg:bottom-[-2rem] -right-4 lg:right-4 font-bold leading-none pointer-events-none select-none tracking-tighter ${theme.numberText} opacity-40 lg:opacity-100`}
+                style={{ 
+                  zIndex: 0,
+                  fontSize: "clamp(6rem, 15vw, 14rem)"
+                }}>
                 {expertise.id}
               </div>
             </div>
