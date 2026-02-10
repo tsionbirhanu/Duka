@@ -36,7 +36,7 @@ const expertises: Expertise[] = [
     mediaType: "video",
     mediaUrl: "/videos/duka.mp4",
     buttonText: "Learn more about brand strategy",
-    linkHref: "/expertises/brand-strategy",
+    linkHref: "/services",
   },
   {
     id: 2,
@@ -49,7 +49,7 @@ const expertises: Expertise[] = [
     mediaType: "video",
     mediaUrl: "/videos/duka.mp4",
     buttonText: "Explore brand systems",
-    linkHref: "/expertises/brand-guidelines",
+    linkHref: "/services",
   },
   {
     id: 3,
@@ -63,7 +63,7 @@ const expertises: Expertise[] = [
     mediaType: "video",
     mediaUrl: "/videos/duka.mp4",
     buttonText: "Discover content services",
-    linkHref: "/expertises/content-creation",
+    linkHref: "/services",
   },
   {
     id: 4,
@@ -77,7 +77,7 @@ const expertises: Expertise[] = [
     mediaType: "video",
     mediaUrl: "/videos/duka2.mp4",
     buttonText: "View our web solutions",
-    linkHref: "/expertises/web-development",
+    linkHref: "/services",
   },
   {
     id: 5,
@@ -91,7 +91,7 @@ const expertises: Expertise[] = [
     mediaType: "video",
     mediaUrl: "/videos/duka.mp4",
     buttonText: "Explore bot solutions",
-    linkHref: "/expertises/telegram-bot",
+    linkHref: "/services",
   },
   {
     id: 6,
@@ -104,7 +104,7 @@ const expertises: Expertise[] = [
     mediaType: "video",
     mediaUrl: "/videos/duka2.mp4",
     buttonText: "Discuss ongoing support",
-    linkHref: "/expertises/ongoing-support",
+    linkHref: "/services",
   },
 ];
 
@@ -233,17 +233,18 @@ function ExpertiseCard({
               {/* Header Section */}
               <div className="relative z-10 flex flex-col h-full justify-between">
                 <div>
-                  <div className="flex items-center justify-between mb-3 sm:mb-6 lg:mb-8">
-                    <span className="text-[10px] sm:text-xs md:text-sm font-bold tracking-widest uppercase opacity-60">
-                      Service {expertise.number}
-                    </span>
-                    <ArrowUpRight className="w-5 h-5 sm:w-6 sm:h-6 opacity-60" />
+                  <div className="flex items-center mb-3 sm:mb-6 lg:mb-8">
+                    <div className="inline-flex items-center gap-2.5 bg-white text-black pl-1 pr-1 py-1 rounded-sm border border-white">
+                      <span className="text-[10px] font-black tracking-[0.2em] uppercase leading-none">
+                        Service
+                      </span>
+                    </div>
                   </div>
 
                   <h2
                     className="font-bold tracking-tight mb-2 sm:mb-3 md:mb-4 leading-tight lg:leading-[1.1]"
                     style={{
-                      fontFamily: "'Uni Neue', 'Inter', system-ui, sans-serif",
+                      fontFamily: "'uni neue-trial', 'Uni Neue', 'Inter', system-ui, sans-serif",
                       fontSize: "clamp(1.5rem, 2.5vw, 2.5rem)",
                     }}>
                     {expertise.title}
@@ -252,7 +253,7 @@ function ExpertiseCard({
                   <h3
                     className="font-medium opacity-80 mb-3 sm:mb-4 md:mb-6 leading-snug"
                     style={{
-                      fontFamily: "'Uni Neue', 'Inter', system-ui, sans-serif",
+                      fontFamily: "'uni neue-trial', 'Uni Neue', 'Inter', system-ui, sans-serif",
                       fontSize: "clamp(0.875rem, 1.2vw, 1.25rem)",
                     }}>
                     {expertise.subtitle}
@@ -279,7 +280,7 @@ function ExpertiseCard({
                     whileTap={{ scale: 0.97 }}
                     transition={{ type: "spring", stiffness: 300, damping: 20 }}
                     href={expertise.linkHref}
-                    className="inline-flex items-center gap-2 sm:gap-2.5 bg-white text-black pl-4 sm:pl-5 pr-1.5 py-1.5 rounded-xl font-semibold text-xs sm:text-sm border border-white cursor-pointer origin-center">
+                    className="inline-flex items-center gap-2 sm:gap-2.5 bg-white text-black pl-4 sm:pl-5 pr-1.5 py-1.5 rounded-xl font-bold text-xs sm:text-sm border border-white cursor-pointer origin-center font-['Inter'] uppercase">
                     <span className="leading-none">{expertise.buttonText}</span>
                     <span className="w-7 h-7 sm:w-8 sm:h-8 bg-black rounded-lg flex items-center justify-center flex-shrink-0">
                       <svg
@@ -360,7 +361,7 @@ export default function Expertises(): React.JSX.Element {
           <h2
             className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight text-black mb-6 leading-[1.1]"
             style={{
-              fontFamily: "'Uni Neue', 'Inter', system-ui, sans-serif",
+              fontFamily: "'uni neue-trial', 'Uni Neue', 'Inter', system-ui, sans-serif",
             }}>
             <span className="text-yellow-400">We build systems</span>, not just
             beautiful logos.

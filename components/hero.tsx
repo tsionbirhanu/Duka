@@ -369,7 +369,10 @@ export default function Hero() {
               {/* Main Bold Headline - Inter font with tight leading */}
               <h2
                 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-black leading-[1.2] md:leading-[1.1] tracking-tight max-w-5xl"
-                style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+                style={{
+                  fontFamily:
+                    "'uni neue-trial', 'Uni Neue', 'Inter', system-ui, sans-serif",
+                }}>
                 We help businesses turn ideas into brands, brands into
                 experiences, and experiences into{" "}
                 <span
@@ -415,6 +418,11 @@ export default function Hero() {
                         stiffness: 300,
                         damping: 20,
                       }}
+                      onClick={() =>
+                        document
+                          .getElementById("footer")
+                          ?.scrollIntoView({ behavior: "smooth" })
+                      }
                       className="group inline-flex items-center justify-center gap-2.5 bg-yellow-300 text-black pl-5 pr-1 py-1 rounded-xl font-semibold text-sm border border-yellow-300 cursor-pointer origin-center transition-all w-full sm:w-auto">
                       Let&apos;s Build Your Brand
                       <span className="w-8 h-8 bg-white rounded-lg flex items-center justify-center text-lg">
@@ -430,6 +438,11 @@ export default function Hero() {
                         stiffness: 300,
                         damping: 20,
                       }}
+                      onClick={() =>
+                        document
+                          .getElementById("works")
+                          ?.scrollIntoView({ behavior: "smooth" })
+                      }
                       className="hidden sm:inline-flex items-center gap-2.5 bg-black text-white pl-5 pr-1 py-1 rounded-xl font-semibold text-sm border border-black cursor-pointer origin-center transition-all">
                       See Our Work
                       <span className="w-8 h-8 bg-white rounded-lg flex items-center justify-center text-black group-hover:bg-gray-100 transition-colors">
@@ -443,7 +456,13 @@ export default function Hero() {
 
             {/* Scroll Down Arrow - Bottom Right - Hidden on mobile */}
             <div className="hidden md:block absolute bottom-8 right-8 md:bottom-12 md:right-16">
-              <button className="w-14 h-14 rounded-xl border-2 border-black/15 flex items-center justify-center hover:border-black/40 transition-colors duration-300 bg-white/50 backdrop-blur-sm">
+              <button
+                onClick={() =>
+                  document
+                    .getElementById("expertises")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
+                className="w-14 h-14 rounded-xl border-2 border-black/15 flex items-center justify-center hover:border-black/40 transition-colors duration-300 bg-white/50 backdrop-blur-sm cursor-pointer">
                 <svg
                   width="22"
                   height="22"

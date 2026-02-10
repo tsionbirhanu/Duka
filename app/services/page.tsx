@@ -39,15 +39,13 @@ export default function ServicesPage() {
       .catch(() => setLoading(false));
   }, []);
 
-  if (loading)
+  if (loading) {
     return (
-      <div className="min-h-screen bg-white flex flex-col items-center justify-center gap-4">
-        <Loader2 className="animate-spin text-black" size={40} />
-        <span className="font-mono text-xs uppercase tracking-widest opacity-50">
-          Syncing Services
-        </span>
-      </div>
+      <main className="bg-white min-h-screen flex items-center justify-center">
+        <Header />
+      </main>
     );
+  }
 
   return (
     <main className="bg-[#FAFAFA] text-black min-h-screen selection:bg-yellow-400 selection:text-black">
@@ -63,12 +61,12 @@ export default function ServicesPage() {
           <div className="flex items-center gap-3 mb-6 md:mb-8">
             <div className="h-[1px] w-8 md:w-12 bg-black/20" />
             <span className="text-[9px] md:text-[10px] font-black tracking-[0.2em] md:tracking-[0.3em] uppercase opacity-40">
-              System Capabilities
+              Service Packages
             </span>
           </div>
           <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-[0.9] md:leading-[0.85] mb-8 md:mb-10">
             Precision <br />
-            <span className="text-zinc-300">Engineering.</span>
+            <span className="text-zinc-300">Performance.</span>
           </h1>
           <p className="text-lg md:text-2xl text-zinc-500 max-w-2xl font-medium leading-relaxed">
             Scalable solutions for the next generation of industry leaders.
@@ -117,9 +115,16 @@ export default function ServicesPage() {
             For enterprise-level needs, we offer tailored retainers and bespoke
             strategic planning.
           </p>
-          <button className="bg-white text-black px-8 py-4 md:px-10 md:py-5 rounded-full font-bold text-base md:text-lg hover:bg-yellow-400 transition-all flex items-center gap-3 mx-auto">
-            Request Bespoke Proposal <ArrowUpRight size={18} md={20} />
-          </button>
+          <motion.button
+            whileHover={{ rotateZ: -3 }}
+            whileTap={{ scale: 0.97 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            className="bg-yellow-300 text-black pl-8 pr-1 py-1 rounded-xl font-bold text-sm md:text-base border border-yellow-300 cursor-pointer origin-center transition-all flex items-center gap-2 mx-auto">
+            Request Bespoke Proposal
+            <span className="w-10 h-10 md:w-12 md:h-12 bg-white rounded-lg flex items-center justify-center text-black">
+              <ArrowUpRight size={18} md={20} />
+            </span>
+          </motion.button>
         </div>
       </section>
 
@@ -275,14 +280,25 @@ function PackageCard({ pkg, index }: { pkg: ServicePackage; index: number }) {
         ))}
       </div>
 
-      <button
-        className={`w-full py-4 md:py-6 rounded-xl sm:rounded-2xl font-bold text-sm md:text-base tracking-tight transition-all duration-300 flex items-center justify-center gap-2 md:gap-3 ${
+      <motion.button
+        whileHover={{ rotateZ: -3 }}
+        whileTap={{ scale: 0.97 }}
+        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+        onClick={() => {
+          document
+            .getElementById("footer")
+            ?.scrollIntoView({ behavior: "smooth" });
+        }}
+        className={`w-full pl-5 pr-1 py-1 rounded-xl font-bold text-sm tracking-tight transition-all duration-300 flex items-center justify-center gap-2.5 origin-center cursor-pointer ${
           isHighlight
-            ? "bg-white text-black hover:bg-yellow-400"
-            : "bg-black text-white hover:bg-zinc-800"
+            ? "bg-yellow-300 text-black border border-yellow-300"
+            : "bg-black text-white border border-black"
         }`}>
-        Initiate {pkg.name} <ArrowRight size={18} />
-      </button>
+        Initiate {pkg.name}
+        <span className="w-8 h-8 bg-white rounded-lg flex items-center justify-center text-black">
+          <ArrowRight size={14} />
+        </span>
+      </motion.button>
     </motion.div>
   );
 }

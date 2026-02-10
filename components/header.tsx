@@ -20,6 +20,10 @@ export default function Header() {
     }
   });
 
+  const scrollToFooter = () => {
+    document.getElementById("footer")?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <motion.header
       initial={{ y: -100 }}
@@ -62,6 +66,7 @@ export default function Header() {
         <motion.button
           whileHover={{ rotateZ: -3 }}
           whileTap={{ scale: 0.97 }}
+          onClick={scrollToFooter}
           transition={{ type: "spring", stiffness: 300, damping: 20 }}
           className="hidden md:flex items-center gap-2.5 bg-yellow-300 text-black pl-5 pr-1 py-1 rounded-xl font-semibold text-sm border border-yellow-300 cursor-pointer origin-center">
           <span>Get Results</span>
@@ -117,7 +122,10 @@ export default function Header() {
             whileHover={{ rotateZ: -3 }}
             whileTap={{ scale: 0.97 }}
             className="flex items-center justify-center gap-2.5 bg-yellow-300 text-black pl-5 pr-1 py-1 rounded-xl font-semibold text-sm border border-yellow-300 transition-all w-full"
-            onClick={() => setIsOpen(false)}>
+            onClick={() => {
+              setIsOpen(false);
+              scrollToFooter();
+            }}>
             <span>Get Results</span>
             <span className="flex items-center justify-center w-8 h-8 bg-white rounded-lg text-lg">
               🔥

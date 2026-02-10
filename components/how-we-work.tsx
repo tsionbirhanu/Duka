@@ -131,7 +131,10 @@ function StepCard({ step, index }: StepCardProps) {
         className="flex-1 max-w-2xl">
         <h3
           className="text-2xl md:text-3xl lg:text-4xl font-bold text-black mb-4 md:mb-6"
-          style={{ fontFamily: "'Uni Neue', 'Inter', system-ui, sans-serif" }}>
+          style={{
+            fontFamily:
+              "'uni neue-trial', 'Uni Neue', 'Inter', system-ui, sans-serif",
+          }}>
           {step.title}
         </h3>
         <p className="text-base md:text-lg text-black/70 leading-relaxed">
@@ -169,7 +172,8 @@ export default function HowWeWork() {
             transition={{ delay: 0.1 }}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-black leading-[1.1] tracking-tight mb-8"
             style={{
-              fontFamily: "'Uni Neue', 'Inter', system-ui, sans-serif",
+              fontFamily:
+                "'uni neue-trial', 'Uni Neue', 'Inter', system-ui, sans-serif",
             }}>
             How We Work
           </motion.h1>
@@ -213,7 +217,8 @@ export default function HowWeWork() {
               transition={{ delay: 0.1 }}
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1] tracking-tight mb-12 md:mb-16"
               style={{
-                fontFamily: "'Uni Neue', 'Inter', system-ui, sans-serif",
+                fontFamily:
+                  "'uni neue-trial', 'Uni Neue', 'Inter', system-ui, sans-serif",
               }}>
               Why Work With Us
             </motion.h2>
@@ -256,7 +261,7 @@ export default function HowWeWork() {
               transition={{ delay: 0.5 }}
               className="mt-12 md:mt-16">
               <motion.a
-                href="/#contact"
+                href="#footer"
                 whileHover={{ rotateZ: -3 }}
                 whileTap={{ scale: 0.97 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}

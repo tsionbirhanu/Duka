@@ -50,7 +50,7 @@ export default function Works() {
       ([entry]) => {
         if (entry.isIntersecting) setIsVisible(true);
       },
-      { threshold: 0.3 }
+      { threshold: 0.3 },
     );
 
     if (containerRef.current) observer.observe(containerRef.current);
@@ -61,6 +61,7 @@ export default function Works() {
 
   return (
     <section
+      id="works"
       ref={containerRef}
       className="bg-white py-20 overflow-hidden relative z-10">
       <div className="container mx-auto px-6 lg:px-8">
