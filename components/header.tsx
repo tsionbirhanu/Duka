@@ -33,7 +33,7 @@ export default function Header() {
             <Image
               src="/images/duka-new.png"
               alt="Duka Logo"
-              width={140}
+              width={150}
               height={40}
               className="object-contain"
               priority
@@ -114,8 +114,8 @@ export default function Header() {
             </Link>
           ))}
           <motion.button
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+            whileHover={{ rotateZ: -3 }}
+            whileTap={{ scale: 0.97 }}
             className="flex items-center justify-center gap-2.5 bg-yellow-300 text-black pl-5 pr-1 py-1 rounded-xl font-semibold text-sm border border-yellow-300 transition-all w-full"
             onClick={() => setIsOpen(false)}>
             <span>Get Results</span>

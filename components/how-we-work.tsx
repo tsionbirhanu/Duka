@@ -159,7 +159,7 @@ export default function HowWeWork() {
         </span>
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-12 lg:px-16">
+      <div className="relative z-10 max-w-[1400px] mx-auto px-2 sm:px-3 lg:px-4">
         {/* ===== HEADER ===== */}
         <div className="max-w-3xl mb-20 md:mb-28 lg:mb-36">
           <motion.h1
@@ -180,8 +180,8 @@ export default function HowWeWork() {
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
             className="text-lg md:text-xl text-black/60 leading-relaxed">
-            From first conversation to final delivery — here's how we transform
-            ideas into brands that stand out.
+            From first conversation to final delivery — here&apos;s how we
+            transform ideas into brands that stand out.
           </motion.p>
         </div>
 

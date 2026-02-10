@@ -31,7 +31,7 @@ export default function Services() {
   if (loading) {
     return (
       <section className="py-16 px-4">
-        <div className="max-w-7xl mx-auto text-center">
+        <div className="max-w-[1400px] mx-auto text-center">
           <p className="text-gray-600">Loading services...</p>
         </div>
       </section>
@@ -50,7 +50,7 @@ export default function Services() {
 
   return (
     <section className="py-16 px-4 bg-gray-50">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-[1400px] mx-auto">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -136,7 +136,7 @@ export default function Services() {
                         </td>
                         {service.packages.map((pkg) => {
                           const featureValue = pkg.features.find(
-                            (f) => f.featureId === feature.id
+                            (f) => f.featureId === feature.id,
                           );
                           return (
                             <td key={pkg.id} className="px-4 py-3 text-center">

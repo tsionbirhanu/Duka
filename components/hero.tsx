@@ -1,12 +1,69 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import React, { useState, useEffect, useRef } from "react";
+import { motion, useScroll, useTransform, easeOut } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { easeOut } from "framer-motion";
+
+// Parallax Card Component adapted from About.tsx
+function ParallaxCard({
+  children,
+  direction,
+  className,
+  onClick,
+}: {
+  children: React.ReactNode;
+  direction: string;
+  className?: string;
+  onClick?: () => void;
+}) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ["start end", "end start"],
+  });
+
+  const xMovement = useTransform(
+    scrollYProgress,
+    [0, 1],
+    direction === "left"
+      ? [50, -50]
+      : direction === "right"
+        ? [-50, 50]
+        : [0, 0],
+  );
+
+  const yMovement = useTransform(
+    scrollYProgress,
+    [0, 1],
+    direction === "up" ? [30, -30] : [20, -20],
+  );
+
+  const rotate = useTransform(
+    scrollYProgress,
+    [0, 0.5, 1],
+    direction === "left"
+      ? [2, 0, -2]
+      : direction === "right"
+        ? [-2, 0, 2]
+        : [0, 0, 0],
+  );
+
+  return (
+    <motion.div
+      ref={cardRef}
+      onClick={onClick}
+      style={{
+        x: xMovement,
+        y: yMovement,
+        rotate,
+      }}
+      className={className}>
+      {children}
+    </motion.div>
+  );
+}
 
 export default function Hero() {
-  const [hoverIndex, setHoverIndex] = useState<number | null>(null);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -30,6 +87,7 @@ export default function Hero() {
         "Reach the right audience, build stronger connections, and grow faster.",
       video: "/videos/duka2.mp4",
       mediaType: "video",
+      direction: "left",
     },
     {
       number: "16+",
@@ -38,12 +96,14 @@ export default function Hero() {
       backgroundColorClass: "bg-black",
       textColorClass: "text-yellow-400",
       mediaType: "color",
+      direction: "up",
     },
     {
       label: "Brand Strategy & Identity",
       sublabel: "Clarify who you are, what you stand for, and how you show up.",
       video: "/videos/duka.mp4",
       mediaType: "video",
+      direction: "right",
     },
     {
       number: "100%",
@@ -52,6 +112,7 @@ export default function Hero() {
       backgroundColorClass: "bg-yellow-400",
       textColorClass: "text-black",
       mediaType: "color",
+      direction: "up",
     },
   ];
 
@@ -72,12 +133,6 @@ export default function Hero() {
     },
   };
 
-  const computeOffset = (index: number) => {
-    if (hoverIndex === null || isMobile) return 0;
-    const distance = index - hoverIndex;
-    return distance * 40;
-  };
-
   return (
     <section className="relative w-full bg-white text-black min-h-screen flex flex-col justify-center overflow-hidden pt-28 md:pt-36 lg:pt-40 pb-16 md:pb-24">
       <div
@@ -89,7 +144,7 @@ export default function Hero() {
         }}
       />
 
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 w-full">
+      <div className="max-w-[1400px] mx-auto px-2 sm:px-3 lg:px-4 w-full">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -109,14 +164,22 @@ export default function Hero() {
           <motion.div
             variants={itemVariants}
             className="text-center mb-12 md:mb-24 lg:mb-32">
-            <h1 className="mx-auto max-w-full px-4 text-[36px] sm:text-[48px] md:text-[80px] lg:text-[100px] xl:text-[120px] leading-[1.1] md:leading-[0.92] font-bold tracking-[-0.02em] md:tracking-[-0.03em] relative">
+            <h1
+              className="mx-auto max-w-full px-4 text-[36px] sm:text-[48px] md:text-[80px] lg:text-[90px] xl:text-[100px] leading-[1.1] md:leading-[0.92] font-bold tracking-[-0.02em] md:tracking-[-0.03em] relative"
+              style={{
+                fontFamily:
+                  "'uni neue-trial', 'Uni Neue', 'Inter', system-ui, sans-serif",
+              }}>
               {/* Line 1 - Black */}
               <span className="block text-black">{mainTitleLine1}</span>
+
               {/* Line 2 - Yellow with accent styling */}
               <span
                 className="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-amber-400 to-yellow-500 mt-1 md:mt-3"
                 style={{
                   textShadow: "none",
+                  fontFamily:
+                    "'uni neue-trial', 'Uni Neue', 'Inter', system-ui, sans-serif",
                 }}>
                 {mainTitleLine2}
               </span>
@@ -148,7 +211,7 @@ export default function Hero() {
                           "Card Clicked:",
                           isVideoCard
                             ? card.label
-                            : `${card.number} ${card.description}`
+                            : `${card.number} ${card.description}`,
                         )
                       }
                       whileTap={{ scale: 0.95 }}
@@ -213,76 +276,53 @@ export default function Hero() {
             </div>
 
             {/* Desktop grid */}
-            <div className="hidden lg:grid grid-cols-4 gap-5 transition-[grid-gap] duration-300 max-w-[1400px] mx-auto">
+            <div className="hidden lg:grid grid-cols-4 gap-6 max-w-[1400px] mx-auto">
               {cards.map((card, index) => {
-                const offsetX = computeOffset(index);
-                const isHovered = hoverIndex === index && !isMobile;
                 const isVideoCard = card.mediaType === "video";
                 const isColorCard = card.mediaType === "color";
 
                 return (
-                  <motion.button
-                    aria-label={
-                      isVideoCard
-                        ? card.label
-                        : `${card.number} ${card.description}`
-                    }
+                  <ParallaxCard
                     key={
                       isVideoCard
                         ? card.label
                         : `${card.number}-${card.description}`
                     }
-                    onMouseEnter={() => setHoverIndex(index)}
-                    onMouseLeave={() => setHoverIndex(null)}
-                    onFocus={() => setHoverIndex(index)}
-                    onBlur={() => setHoverIndex(null)}
+                    direction={card.direction || "up"}
                     onClick={() =>
                       console.log(
                         "Card Clicked:",
                         isVideoCard
                           ? card.label
-                          : `${card.number} ${card.description}`
+                          : `${card.number} ${card.description}`,
                       )
                     }
-                    layout
-                    transition={{ type: "spring", stiffness: 120, damping: 15 }}
-                    whileHover={{
-                      scale: 1.1,
-                      y: -15,
-                      boxShadow: "none",
-                    }}
-                    className={`group relative overflow-hidden rounded-[2rem] focus:outline-none focus:ring-4 focus:ring-yellow-400/80 cursor-pointer transform transition-transform duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] w-full ${
+                    className={`group relative overflow-hidden rounded-[2rem] cursor-pointer w-full h-[400px] flex flex-col shadow-xl transition-all duration-500 group-hover:shadow-2xl ${
+                      isVideoCard ? "justify-end" : "justify-between"
+                    } ${
                       isColorCard ? card.backgroundColorClass : "bg-transparent"
-                    }`}
-                    style={{
-                      zIndex: isHovered ? 40 : 10,
-                      height: "400px",
-                      maxWidth: "320px",
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: isVideoCard
-                        ? "flex-end"
-                        : "space-between",
-                      transform: `translateX(${offsetX}px) ${
-                        isHovered ? " scale(1.1)" : ""
-                      }`,
-                    }}>
+                    }`}>
                     {isVideoCard && (
-                      <div className="absolute inset-0">
-                        <motion.video
-                          key={`vid-${index}`}
-                          src={card.video}
-                          autoPlay
-                          muted
-                          loop
-                          playsInline
-                          className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
-                          initial={{ opacity: 1 }}
-                          animate={{ opacity: 1 }}
-                          exit={{ opacity: 0 }}
-                          transition={{ duration: 0.5 }}
-                        />
-                      </div>
+                      <>
+                        <div className="absolute inset-0">
+                          <motion.video
+                            key={`vid-${index}`}
+                            src={card.video}
+                            autoPlay
+                            muted
+                            loop
+                            playsInline
+                            className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+                            initial={{ opacity: 1 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.5 }}
+                          />
+                        </div>
+
+                        {/* Overlay on hover */}
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-500" />
+                      </>
                     )}
 
                     {/* Content for Color Cards */}
@@ -315,7 +355,7 @@ export default function Hero() {
                         </div>
                       </div>
                     )}
-                  </motion.button>
+                  </ParallaxCard>
                 );
               })}
             </div>
@@ -328,7 +368,7 @@ export default function Hero() {
             <div className="max-w-6xl mx-auto">
               {/* Main Bold Headline - Inter font with tight leading */}
               <h2
-                className="text-xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-[52px] font-bold text-black leading-[1.2] md:leading-[1.1] tracking-tight max-w-5xl"
+                className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-black leading-[1.2] md:leading-[1.1] tracking-tight max-w-5xl"
                 style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
                 We help businesses turn ideas into brands, brands into
                 experiences, and experiences into{" "}
@@ -347,7 +387,7 @@ export default function Hero() {
                   whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
                   viewport={{ once: true, amount: 0.5 }}
                   transition={{ duration: 0.6, ease: "easeOut" }}
-                  className="w-48 h-56 md:w-64 md:h-72 lg:w-72 lg:h-80 bg-[#F5E6D3] rounded-[2.5rem] overflow-hidden flex-shrink-0 mx-auto md:mx-0 group"
+                  className="w-48 h-56 md:w-64 md:h-72 lg:w-72 lg:h-80 bg-[#F5E6D3] rounded-[1.5rem] overflow-hidden flex-shrink-0 mx-auto md:mx-0 group"
                   style={{
                     boxShadow: "none",
                   }}>
@@ -403,7 +443,7 @@ export default function Hero() {
 
             {/* Scroll Down Arrow - Bottom Right - Hidden on mobile */}
             <div className="hidden md:block absolute bottom-8 right-8 md:bottom-12 md:right-16">
-              <button className="w-14 h-14 rounded-full border-2 border-black/15 flex items-center justify-center hover:border-black/40 transition-colors duration-300 bg-white/50 backdrop-blur-sm">
+              <button className="w-14 h-14 rounded-xl border-2 border-black/15 flex items-center justify-center hover:border-black/40 transition-colors duration-300 bg-white/50 backdrop-blur-sm">
                 <svg
                   width="22"
                   height="22"

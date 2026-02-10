@@ -27,7 +27,7 @@ export default function ValueSection() {
 
   return (
     <section className="py-20 md:py-32 lg:py-40 bg-white">
-      <div className="max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-8">
+      <div className="max-w-[1400px] mx-auto px-2 sm:px-3 lg:px-4">
         <motion.div
           initial="hidden"
           whileInView="visible"

@@ -59,14 +59,14 @@ function TeamCard({ member }: TeamCardProps) {
     member.direction === "left"
       ? [50, -50]
       : member.direction === "right"
-      ? [-50, 50]
-      : [0, 0]
+        ? [-50, 50]
+        : [0, 0],
   );
 
   const yMovement = useTransform(
     scrollYProgress,
     [0, 1],
-    member.direction === "up" ? [30, -30] : [20, -20]
+    member.direction === "up" ? [30, -30] : [20, -20],
   );
 
   const rotate = useTransform(
@@ -75,8 +75,8 @@ function TeamCard({ member }: TeamCardProps) {
     member.direction === "left"
       ? [2, 0, -2]
       : member.direction === "right"
-      ? [-2, 0, 2]
-      : [0, 0, 0]
+        ? [-2, 0, 2]
+        : [0, 0, 0],
   );
 
   return (
@@ -164,7 +164,7 @@ export default function About() {
         </span>
       </motion.div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
+      <div className="relative z-10 max-w-[1400px] mx-auto px-2 sm:px-3 lg:px-4">
         {/* ===== ABOUT US HEADER ===== */}
         <div className="max-w-4xl mb-20 md:mb-28 lg:mb-36">
           {/* Badge */}

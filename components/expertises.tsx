@@ -241,24 +241,26 @@ function ExpertiseCard({
                   </div>
 
                   <h2
-                    className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-2 sm:mb-3 md:mb-4 leading-tight lg:leading-[1.1]"
+                    className="font-bold tracking-tight mb-2 sm:mb-3 md:mb-4 leading-tight lg:leading-[1.1]"
                     style={{
                       fontFamily: "'Uni Neue', 'Inter', system-ui, sans-serif",
+                      fontSize: "clamp(1.5rem, 2.5vw, 2.5rem)",
                     }}>
                     {expertise.title}
                   </h2>
 
                   <h3
-                    className="text-sm sm:text-base md:text-lg lg:text-xl font-medium opacity-80 mb-3 sm:mb-4 md:mb-6 leading-snug"
+                    className="font-medium opacity-80 mb-3 sm:mb-4 md:mb-6 leading-snug"
                     style={{
                       fontFamily: "'Uni Neue', 'Inter', system-ui, sans-serif",
+                      fontSize: "clamp(0.875rem, 1.2vw, 1.25rem)",
                     }}>
                     {expertise.subtitle}
                   </h3>
 
-                  {/* Full description on larger screens */}
+                  {/* Full description on larger screens - WIDER width to save vertical space */}
                   <p
-                    className="text-sm md:text-base leading-relaxed opacity-70 max-w-md hidden sm:block"
+                    className="text-sm md:text-base leading-relaxed opacity-70 max-w-xl hidden sm:block"
                     style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
                     {expertise.description}
                   </p>
@@ -348,7 +350,7 @@ export default function Expertises(): React.JSX.Element {
       className="section_expertises relative bg-white z-10"
       style={{ minHeight: `${n * 100}vh` }}>
       {/* Intro Text Section - Professional and responsive */}
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-32 md:pt-40 lg:pt-48 pb-8 sm:pb-16 md:pb-20">
+      <div className="max-w-[1400px] mx-auto px-2 sm:px-3 lg:px-4 pt-20 sm:pt-32 md:pt-40 lg:pt-48 pb-8 sm:pb-16 md:pb-20">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -360,28 +362,25 @@ export default function Expertises(): React.JSX.Element {
             style={{
               fontFamily: "'Uni Neue', 'Inter', system-ui, sans-serif",
             }}>
-            We build systems, not just{" "}
-            <span className="text-yellow-400">beautiful logos.</span>
+            <span className="text-yellow-400">We build systems</span>, not just
+            beautiful logos.
           </h2>
+
           <p
             className="text-base sm:text-lg md:text-xl lg:text-2xl text-black/60 font-normal max-w-3xl mx-auto"
             style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
-            Here's what we help you build, grow, and manage:
+            Here&apos;s what we help you build, grow, and manage:
           </p>
         </motion.div>
       </div>
 
       {/* Sticky container with card stack */}
       <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden py-4 sm:py-6">
-        <div className="w-full h-full px-4 sm:px-6 lg:px-8 max-w-[1400px] mx-auto">
+        <div className="w-full h-full max-w-[1400px] mx-auto px-2 sm:px-3 lg:px-4">
           <div className="relative w-full h-full flex items-center justify-center">
             <div
               role="list"
-              className="relative w-full h-[85vh] sm:h-[80vh] md:h-[85vh] lg:h-[85vh]"
-              style={{
-                perspective: "1500px",
-                perspectiveOrigin: "center 30%",
-              }}>
+              className="relative w-full h-[85vh] sm:h-[80vh] md:h-[90vh] lg:h-[95vh] xl:h-[95vh]">
               {expertises.map((expertise, index) => (
                 <ExpertiseCard
                   key={expertise.id}
