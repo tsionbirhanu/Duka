@@ -172,37 +172,37 @@ function ExpertiseCard({
   const y = useTransform(
     scrollYProgress,
     [cardStart, cardEnd],
-    [isFirstCard ? "0%" : "100%", "0%"]
+    [isFirstCard ? "0%" : "100%", "0%"],
   );
 
   const opacity = useTransform(
     scrollYProgress,
     [cardStart, cardStart + 0.03],
-    [isFirstCard ? 1 : 0, 1]
+    [isFirstCard ? 1 : 0, 1],
   );
 
   const scale = useTransform(
     scrollYProgress,
     [exitStart, exitEnd],
-    [1, isLastCard ? 1 : 0.88]
+    [1, isLastCard ? 1 : 0.88],
   );
 
   const rotateX = useTransform(
     scrollYProgress,
     [exitStart, exitEnd],
-    [0, isLastCard ? 0 : -8]
+    [0, isLastCard ? 0 : -8],
   );
 
   const rotateY = useTransform(
     scrollYProgress,
     [exitStart, exitEnd],
-    [0, isLastCard ? 0 : 6]
+    [0, isLastCard ? 0 : 6],
   );
 
   const translateZ = useTransform(
     scrollYProgress,
     [exitStart, exitEnd],
-    [0, isLastCard ? 0 : -100]
+    [0, isLastCard ? 0 : -100],
   );
 
   const zIndex = index + 1;
