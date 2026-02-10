@@ -7,22 +7,27 @@ const SocialIcon: React.FC<{ Icon: React.ElementType; href?: string }> = ({
   Icon,
   href = "#",
 }) => (
-  <a href={href} className="text-[#1a1a1a] hover:opacity-60 transition-opacity">
-    <Icon size={16} strokeWidth={2.5} />
+  <a
+    href={href}
+    className="text-[#1a1a1a] hover:opacity-60 transition-opacity p-2"
+    aria-label="Social Link"
+  >
+    <Icon size={18} strokeWidth={2.5} />
   </a>
 );
 
 export default function Footer() {
   return (
-    <footer className="relative w-full bg-[#FFC20E] text-black overflow-hidden font-sans min-h-[650px] sm:min-h-[850px] lg:min-h-[950px] flex flex-col">
+    <footer className="relative w-full bg-[#FFC20E] text-black overflow-hidden font-sans min-h-[650px] sm:min-h-[850px] lg:min-h-[950px] flex flex-col justify-between">
       {/* ================= HERO TEXT ================= */}
-      <div className="relative z-20 flex flex-col items-center text-center pt-14 sm:pt-24 md:pt-36">
+      <div className="relative z-20 flex flex-col items-center text-center pt-20 sm:pt-24 md:pt-36 px-4">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-3xl sm:text-4xl md:text-7xl lg:text-[7.5rem] font-bold leading-[1.05] mb-8 sm:mb-10 font-['Uni_Neue']">
+          className="text-4xl sm:text-5xl md:text-7xl lg:text-[7.5rem] font-bold leading-[1.1] sm:leading-[1.05] mb-8 sm:mb-10 font-['Uni_Neue']"
+        >
           Your brand deserves <br />
           to be <span className="italic font-black">unforgettable.</span>
         </motion.h2>
@@ -32,35 +37,40 @@ export default function Footer() {
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.2 }}
           viewport={{ once: true }}
-          className="px-8 sm:px-10 py-3 border-[1.5px] border-black rounded-full text-[10px] sm:text-xs md:text-sm font-bold tracking-[0.25em] uppercase hover:bg-black hover:text-[#FFC20E] transition-all">
+          className="px-8 sm:px-10 py-3 sm:py-4 border-[1.5px] border-black rounded-full text-[10px] sm:text-xs md:text-sm font-bold tracking-[0.25em] uppercase hover:bg-black hover:text-[#FFC20E] transition-all cursor-pointer"
+        >
           Make Me Different
         </motion.button>
       </div>
 
-      {/* ================= TORII GATE ================= */}
-      <div className="absolute bottom-[-20px] sm:bottom-[-60px] md:bottom-0 left-1/2 -translate-x-1/2 z-10 pointer-events-none overflow-visible">
+      {/* ================= TORII GATE IMAGE WRAPPER ================= */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-10 pointer-events-none overflow-visible w-full flex justify-center">
         <div
           className="
             relative
-
-            w-[650px] 
+            
+            /* Responsive Widths (Preserving your Scaling Pattern) */
+            w-[160%]         /* Mobile: slight zoom to frame center */
             sm:w-[1100px] 
             md:w-[2500px] 
             lg:w-[6000px] 
             xl:w-[12000px] 
             2xl:w-[20000px]
 
-            h-[320px] 
+            /* Responsive Heights */
+            h-[350px] 
             sm:h-[480px] 
             md:h-[700px] 
             lg:h-[1000px] 
             xl:h-[1200px]
 
-            -mb-[40px]
+            /* Responsive Bottom Positioning */
+            -mb-[50px]
             sm:-mb-[120px]
             md:-mb-[200px]
             lg:-mb-[250px]
-          ">
+          "
+        >
           <Image
             src="/images/du.png"
             alt="Duka Torii Gate"
@@ -73,49 +83,56 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* ================= FOOTER CONTENT ================= */}
-      <div className="relative z-30 mt-auto px-6 sm:px-8 md:px-14 lg:px-24 pb-10">
-        <div className="flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between w-full">
-          {/* LEFT LINKS */}
-          <div className="flex flex-col items-center sm:items-start gap-1 font-['Uni_Neue']">
+      {/* ================= FOOTER LINKS CONTENT ================= */}
+      <div className="relative z-30 w-full px-6 sm:px-8 md:px-14 lg:px-24 pb-12 sm:pb-10 mt-auto">
+        {/* Container: Stack on mobile, Row on desktop */}
+        <div className="flex flex-col-reverse gap-10 md:gap-0 md:flex-row md:items-end md:justify-between w-full">
+          
+          {/* LEFT: Navigation Links */}
+          <div className="flex flex-col items-center md:items-start gap-3 sm:gap-1 font-['Uni_Neue'] flex-1">
             {["Home", "Services", "Portfolio", "About Us"].map((item) => (
               <a
                 key={item}
                 href="#"
-                className="text-lg md:text-2xl font-normal leading-none hover:opacity-60 transition">
+                className="text-lg sm:text-xl md:text-2xl font-normal leading-none hover:opacity-60 transition py-1 md:py-0"
+              >
                 {item}
               </a>
             ))}
           </div>
 
-          {/* CENTER COPYRIGHT */}
-          <div className="flex-1 flex justify-center">
-            <span className="text-[10px] md:text-[11px] tracking-[0.35em] uppercase font-bold opacity-70 font-['Uni_Neue'] text-center -mr-40 ">
+          {/* CENTER: Copyright (Order changes on mobile via flex-col-reverse logic or simpler stacking) */}
+          <div className="flex justify-center md:mb-1">
+            <span className="text-[10px] md:text-[11px] tracking-[0.2em] md:tracking-[0.35em] uppercase font-bold opacity-70 font-['Uni_Neue'] text-center whitespace-nowrap">
               Duka Branding Agency ©2026
             </span>
           </div>
 
-          {/* RIGHT CONTACT */}
-          <div className="flex flex-col items-center sm:items-end gap-3 font-['Uni_Neue']">
-            <div className="flex gap-4">
+          {/* RIGHT: Contact Info */}
+          <div className="flex flex-col items-center md:items-end gap-4 md:gap-3 font-['Uni_Neue'] flex-1">
+            {/* Social Icons */}
+            <div className="flex gap-4 md:gap-2">
               <SocialIcon Icon={Instagram} />
               <SocialIcon Icon={Linkedin} />
               <SocialIcon Icon={Send} />
             </div>
 
+            {/* Email */}
             <a
               href="mailto:dukacreativesss@gmail.com"
-              className="text-sm md:text-xl font-normal hover:opacity-60 transition text-left">
+              className="text-base sm:text-lg md:text-xl font-normal hover:opacity-60 transition text-center md:text-right break-all sm:break-normal"
+            >
               Dukacreativesss@gmail.com
             </a>
 
-            <div className="text-[10px] md:text-xs font-bold tracking-wider text-left">
-              <a href="tel:+251905093496" className="hover:opacity-60">
-                +251905093496
+            {/* Phone Numbers */}
+            <div className="text-[11px] md:text-xs font-bold tracking-wider text-center md:text-right flex items-center gap-2">
+              <a href="tel:+251905093496" className="hover:opacity-60 whitespace-nowrap">
+                +251 90 509 3496
               </a>
-              <span className="mx-2 opacity-30">|</span>
-              <a href="tel:+251943195220" className="hover:opacity-60">
-                +251943195220
+              <span className="opacity-30">|</span>
+              <a href="tel:+251943195220" className="hover:opacity-60 whitespace-nowrap">
+                +251 94 319 5220
               </a>
             </div>
           </div>
