@@ -122,7 +122,7 @@ export default function ServicesPage() {
             className="bg-yellow-300 text-black pl-8 pr-1 py-1 rounded-xl font-bold text-sm md:text-base border border-yellow-300 cursor-pointer origin-center transition-all flex items-center gap-2 mx-auto">
             Request Bespoke Proposal
             <span className="w-10 h-10 md:w-12 md:h-12 bg-white rounded-lg flex items-center justify-center text-black">
-              <ArrowUpRight size={18} md={20} />
+              <ArrowUpRight className="w-4 h-4 md:w-5 md:h-5" />
             </span>
           </motion.button>
         </div>
