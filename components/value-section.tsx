@@ -33,59 +33,54 @@ export default function ValueSection() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
           variants={containerVariants}
-          className="space-y-16 md:space-y-32 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-8">
-          {/* Step 1 - Card style on mobile */}
-          <motion.div
-            variants={itemVariants}
-            className="flex flex-col gap-4 p-6 rounded-2xl bg-white border border-black/5">
-            <div>
-              <span className="text-[4rem] sm:text-[5rem] md:text-[6rem] lg:text-8xl font-bold text-[#FFD93D] leading-none">
+          className="space-y-16 md:space-y-32 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-8"
+        >
+          {/* Step 1 */}
+          <motion.div variants={itemVariants} className="flex flex-col gap-4">
+            <div className="flex justify-start">
+              <span className="text-[4rem] sm:text-[5rem] lg:text-[5rem] font-bold text-[#FFD93D] leading-none">
                 01
               </span>
             </div>
-            <div className="space-y-2 md:space-y-4">
-              <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-black leading-tight">
+            <div className="bg-gradient-to-br from-gray-50 to-white p-8 rounded-3xl border-l-4 border-[#FFD93D] text-left h-full shadow-sm hover:shadow-md transition-shadow">
+              <h3 className="text-2xl sm:text-3xl lg:text-3xl font-bold text-black leading-tight mb-3">
                 No templates here
               </h3>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-black/70 leading-relaxed max-w-3xl">
+              <p className="text-base sm:text-lg text-black/70 leading-relaxed">
                 everything is built from scratch, for you.
               </p>
             </div>
           </motion.div>
 
-          {/* Step 2 - Card style on mobile, center on desktop */}
-          <motion.div
-            variants={itemVariants}
-            className="flex flex-col gap-4 p-6 rounded-2xl bg-white border border-black/5 text-left lg:text-center">
-            <div>
-              <span className="text-[4rem] sm:text-[5rem] md:text-[6rem] lg:text-8xl font-bold text-[#FFD93D] leading-none">
+          {/* Step 2 */}
+          <motion.div variants={itemVariants} className="flex flex-col gap-4">
+            <div className="flex justify-start">
+              <span className="text-[4rem] sm:text-[5rem] lg:text-[5rem] font-bold text-[#FFD93D] leading-none">
                 02
               </span>
             </div>
-            <div className="space-y-2 md:space-y-4">
-              <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-black leading-tight mb-2 md:mb-4">
+            <div className="bg-gradient-to-br from-gray-50 to-white p-8 rounded-3xl border-l-4 border-[#FFD93D] text-left h-full shadow-sm hover:shadow-md transition-shadow">
+              <h3 className="text-2xl sm:text-3xl lg:text-3xl font-bold text-black leading-tight mb-3">
                 Looks good, works great
               </h3>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-black/70 leading-relaxed max-w-3xl lg:mx-auto">
+              <p className="text-base sm:text-lg text-black/70 leading-relaxed">
                 every design has a purpose.
               </p>
             </div>
           </motion.div>
 
-          {/* Step 3 - Card style on mobile, right on desktop */}
-          <motion.div
-            variants={itemVariants}
-            className="flex flex-col gap-4 p-6 rounded-2xl bg-white border border-black/5 text-left lg:text-right">
-            <div>
-              <span className="text-[4rem] sm:text-[5rem] md:text-[6rem] lg:text-8xl font-bold text-[#FFD93D] leading-none">
+          {/* Step 3 */}
+          <motion.div variants={itemVariants} className="flex flex-col gap-4">
+            <div className="flex justify-start">
+              <span className="text-[4rem] sm:text-[5rem] lg:text-[5rem] font-bold text-[#FFD93D] leading-none">
                 03
               </span>
             </div>
-            <div className="space-y-2 md:space-y-4">
-              <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-black leading-tight mb-2 md:mb-4">
+            <div className="bg-gradient-to-br from-gray-50 to-white p-8 rounded-3xl border-l-4 border-[#FFD93D] text-left h-full shadow-sm hover:shadow-md transition-shadow">
+              <h3 className="text-2xl sm:text-3xl lg:text-3xl font-bold text-black leading-tight mb-3">
                 We grow with you
               </h3>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-black/70 leading-relaxed max-w-3xl lg:ml-auto">
+              <p className="text-base sm:text-lg text-black/70 leading-relaxed">
                 long-term support for long-term brands.
               </p>
             </div>
