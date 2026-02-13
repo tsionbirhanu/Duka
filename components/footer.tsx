@@ -45,46 +45,22 @@ export default function Footer() {
           transition={{ delay: 0.2 }}
           viewport={{ once: true }}
           onClick={scrollToTop}
-          className="px-8 sm:px-10 py-3 sm:py-4 border-[1.5px] border-black rounded-full text-[10px] sm:text-xs md:text-sm font-bold tracking-[0.25em] uppercase hover:bg-black hover:text-[#FFC20E] transition-all cursor-pointer">
+          className="px-8 sm:px-10 py-3 sm:py-4 border-[2px] border-black rounded-2xl text-[10px] sm:text-xs md:text-sm font-bold tracking-[0.25em] uppercase hover:bg-black hover:text-[#FFC20E] transition-all cursor-pointer">
           Make Me Different
         </motion.button>
       </div>
 
       {/* ================= TORII GATE IMAGE WRAPPER ================= */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-10 pointer-events-none overflow-visible w-full flex justify-center">
-        <div
-          className="
-            relative
-            
-            /* Responsive Widths (Preserving your Scaling Pattern) */
-            w-[160%]         /* Mobile: slight zoom to frame center */
-            sm:w-[1100px] 
-            md:w-[2500px] 
-            lg:w-[6000px] 
-            xl:w-[12000px] 
-            2xl:w-[20000px]
-
-            /* Responsive Heights */
-            h-[350px] 
-            sm:h-[480px] 
-            md:h-[700px] 
-            lg:h-[1000px] 
-            xl:h-[1200px]
-
-            /* Responsive Bottom Positioning */
-            -mb-[50px]
-            sm:-mb-[120px]
-            md:-mb-[200px]
-            lg:-mb-[250px]
-          ">
+        <div className="relative w-full max-w-[1400px] px-4 sm:px-6 flex justify-center" style={{ pointerEvents: 'none' }}>
           <Image
-            src="/images/du.png"
+            src="/images/dukalogo.svg"
             alt="Duka Torii Gate"
-            fill
+            width={1400}
+            height={520}
             priority
             unoptimized
-            className="object-contain object-bottom"
-            style={{ filter: "brightness(0) invert(1)" }}
+            className="object-contain object-bottom w-full h-auto  -mb-80"
           />
         </div>
       </div>
@@ -118,7 +94,7 @@ export default function Footer() {
           </div>
 
           {/* RIGHT: Contact Info */}
-          <div className="flex flex-col items-center md:items-end gap-4 md:gap-3 flex-1 -mr-10 font-['Inter']">
+          <div className="flex flex-col items-center md:items-end gap-4 md:gap-3 flex-1 -mr-15 font-['Inter']">
             {/* Social Icons */}
             <div className="flex gap-4 md:gap-2">
               <SocialIcon Icon={Instagram} />

@@ -186,11 +186,7 @@ export default function About() {
         <div className="flex flex-col lg:flex-row gap-16 lg:gap-32 mb-32 md:mb-64">
           <div className="lg:w-1/2">
             <div className="lg:sticky lg:top-40">
-              <TextReveal className="mb-6">
-                <span className="text-sm font-black tracking-[0.6em] uppercase text-yellow-500 font-['Inter']">
-                  About Us
-                </span>
-              </TextReveal>
+             
               <h1
                 className="font-black tracking-tighter leading-[0.8]"
                 style={{
@@ -308,15 +304,15 @@ export default function About() {
             viewport={{ once: true }}
             className="mt-24 md:mt-48 text-center">
             <p
-              className="text-2xl md:text-4xl font-black uppercase italic tracking-tight"
+              className="text-2xl md:text-4xl font-black uppercase tracking-tight"
               style={{
                 fontFamily: "'uni neue-trial', 'Uni Neue', sans-serif",
               }}>
               “We’re small by design — because{" "}
-              <span className="text-yellow-400 underline decoration-4 decoration-black">
-                good brands
+              <span className="text-yellow-400 decoration-4 decoration-black">
+                good brands are built by people,
               </span>{" "}
-              are built by people, not by departments.”
+               not by departments.”
             </p>
             <div className="mt-10 flex items-center justify-center gap-6 text-xs font-black tracking-[0.5em] uppercase opacity-40 font-['Inter']">
               <span className="h-px w-16 bg-black"></span>

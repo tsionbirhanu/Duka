@@ -31,32 +31,30 @@ function StatementItem({
   // Mobile: Adjusted range to make transitions snappier on shorter scroll
   const rangeStart = i / total;
   const rangeEnd = (i + 1) / total;
+  // Fade + slight vertical motion. overlap ensures next sentence is visible when
+  // it's adjacent to "We" so transitions feel continuous (no hard rotation).
+  const overlap = 0.08;
+  const startA = Math.max(0, rangeStart - overlap);
+  const startB = rangeStart + 0.02;
+  const endA = rangeEnd - 0.02;
+  const endB = Math.min(1, rangeEnd + overlap);
 
-  // 3D Flip Logic
   const opacity = useTransform(
     progress,
-    [rangeStart, rangeStart + 0.1, rangeEnd - 0.1, rangeEnd],
+    [startA, startB, endA, endB],
     [0, 1, 1, 0],
-  );
-
-  // Reduced rotation intensity for mobile to ensure readability
-  const rotateX = useTransform(
-    progress,
-    [rangeStart, rangeStart + 0.1, rangeEnd - 0.1, rangeEnd],
-    [45, 0, 0, -45],
   );
 
   const y = useTransform(
     progress,
-    [rangeStart, rangeStart + 0.1, rangeEnd - 0.1, rangeEnd],
-    [40, 0, 0, -40],
+    [startA, startB, endA, endB],
+    [30, 0, 0, -30],
   );
 
   return (
     <motion.div
       style={{
         opacity,
-        rotateX,
         y,
         transformStyle: "preserve-3d",
       }}
@@ -69,7 +67,9 @@ function StatementItem({
         }}>
         {text}
       </h3>
-      <p className="mt-4 sm:mt-6 text-base sm:text-lg md:text-2xl text-black/50 font-medium tracking-tight max-w-[80%] lg:max-w-md">
+      <p
+        className="mt-4 sm:mt-6 text-base sm:text-lg md:text-2xl text-black/50 font-medium tracking-tight max-w-[80%] lg:max-w-md"
+        style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
         {sub}
       </p>
 

@@ -8,13 +8,11 @@ import {
   ServicesResponse,
   ServiceCategory,
   Package as ServicePackage,
-  PackageFeature,
 } from "@/types/services";
 import {
   ArrowUpRight,
   Plus,
   Minus,
-  Loader2,
   ArrowRight,
   Sparkles,
   Check,
@@ -145,6 +143,7 @@ function ServiceRow({
   toggleOpen: () => void;
 }) {
   const num = (index + 1).toString().padStart(2, "0");
+  const cleanServiceName = service.name.replace(/(.+?)\1+$/, "$1");
 
   return (
     <div
@@ -158,13 +157,13 @@ function ServiceRow({
           </span>
           <h2
             className={`text-2xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter transition-all duration-700 text-left ${isOpen ? "text-black" : "text-black/60 group-hover:text-black"}`}>
-            {service.name}
+            {cleanServiceName}
           </h2>
         </div>
         <div
-          className={`relative w-10 h-10 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center transition-all duration-500 border flex-shrink-0 ${isOpen ? "bg-black border-black rotate-180" : "bg-white border-black/10 group-hover:border-black"}`}>
+          className={`relative w-10 h-10 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center transition-all duration-500 border flex-shrink-0 ${isOpen ? "bg-black border-black rotate-180" : "bg-white border-black/10 group-hover:border-yellow-400 group-hover:bg-yellow-400"}`}>
           <Plus
-            className={`absolute transition-all duration-500 ${isOpen ? "opacity-0 scale-0" : "opacity-100 scale-100"}`}
+            className={`absolute transition-all duration-500 text-black group-hover:text-black ${isOpen ? "opacity-0 scale-0" : "opacity-100 scale-100"}`}
             size={isOpen ? 20 : 28}
           />
           <Minus
@@ -181,7 +180,7 @@ function ServiceRow({
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
-            <div className="px-4 md:px-12 pb-12 md:pb-24">
+            <div className="px-2 md:px-8 pb-12 md:pb-24">
               <div className="max-w-3xl mb-8 md:mb-16">
                 <p className="text-lg sm:text-2xl md:text-3xl font-medium text-zinc-500 leading-snug">
                   {service.description ||
@@ -190,7 +189,7 @@ function ServiceRow({
               </div>
 
               {/* Package Cards */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-16 md:mb-32">
+              <div className="pl-2 md:pl-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-16 md:mb-32">
                 {service.packages.map((pkg, i) => (
                   <PackageCard key={pkg.id} pkg={pkg} index={i} />
                 ))}
@@ -230,13 +229,14 @@ function ServiceRow({
 
 function PackageCard({ pkg, index }: { pkg: ServicePackage; index: number }) {
   const isHighlight = index === 1;
+  const cleanName = pkg.name.replace(/(.+?)\1+$/, "$1");
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
-      className={`relative p-6 sm:p-8 md:p-10 rounded-[2rem] sm:rounded-[3rem] flex flex-col h-full border transition-all duration-500 cursor-default shadow-sm ${
+      className={`relative p-6 sm:p-8 md:p-10 rounded-[2rem] sm:rounded-[3rem] flex flex-col h-full items-start border transition-all duration-500 cursor-default shadow-sm ${
         isHighlight
           ? "bg-black text-white border-black shadow-[0_40px_100px_-20px_rgba(0,0,0,0.3)] ring-1 ring-white/10 sm:scale-105 z-10"
           : "bg-white text-black border-black/5 hover:border-black/20 hover:shadow-xl"
@@ -250,7 +250,7 @@ function PackageCard({ pkg, index }: { pkg: ServicePackage; index: number }) {
       <div className="mb-8 md:mb-12">
         <h4
           className={`text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] mb-3 md:mb-4 opacity-40`}>
-          {pkg.name}
+          {cleanName}
         </h4>
         <div className="flex items-baseline gap-1">
           <span className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tighter">
@@ -294,7 +294,7 @@ function PackageCard({ pkg, index }: { pkg: ServicePackage; index: number }) {
             ? "bg-yellow-300 text-black border border-yellow-300"
             : "bg-black text-white border border-black"
         }`}>
-        Initiate {pkg.name}
+        Initiate {cleanName}
         <span className="w-8 h-8 bg-white rounded-lg flex items-center justify-center text-black">
           <ArrowRight size={14} />
         </span>
@@ -313,14 +313,23 @@ function ComparisonTable({ packages }: { packages: ServicePackage[] }) {
       <table className="w-full border-collapse min-w-[600px]">
         <thead>
           <tr>
-            <th className="py-4 md:py-8 pr-4 md:pr-10 text-left text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] md:tracking-[0.3em] opacity-30 border-b border-black/5">
+            <th
+              className="py-4 md:py-8 pr-4 md:pr-10 text-left text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] md:tracking-[0.3em] opacity-30 border-b border-black/5"
+              style={{
+                fontFamily:
+                  "'uni neue-trial', 'Uni Neue', 'Inter', system-ui, sans-serif",
+              }}>
               Deliverable
             </th>
-            {packages.map((pkg) => (
+            {packages.map((pkg, idx) => (
               <th
                 key={pkg.id}
-                className="py-4 md:py-8 px-4 md:px-6 text-center text-base sm:text-lg md:text-xl font-bold border-b border-black/5 whitespace-nowrap">
-                {pkg.name}
+                className={`py-4 md:py-8 px-4 md:px-6 text-center text-base sm:text-lg md:text-xl border-b border-black/5 whitespace-nowrap ${idx === 1 ? "font-normal" : "font-extrabold"}`}
+                style={{
+                  fontFamily:
+                    "'uni neue-trial', 'Uni Neue', 'Inter', system-ui, sans-serif",
+                }}>
+                {pkg.name.replace(/(.+?)\1+$/, "$1")}
               </th>
             ))}
           </tr>

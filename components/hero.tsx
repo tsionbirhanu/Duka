@@ -165,22 +165,20 @@ export default function Hero() {
             variants={itemVariants}
             className="text-center mb-12 md:mb-24 lg:mb-32">
             <h1
-              className="mx-auto max-w-full px-4 text-[36px] sm:text-[48px] md:text-[80px] lg:text-[90px] xl:text-[100px] leading-[1.1] md:leading-[0.92] font-bold tracking-[-0.02em] md:tracking-[-0.03em] relative"
+              className="mx-auto max-w-full px-4 text-[36px] sm:text-[48px] md:text-[80px] lg:text-[90px] xl:text-[100px] leading-[1.1] md:leading-[0.92] tracking-[-0.02em] md:tracking-[-0.03em] relative"
               style={{
                 fontFamily:
                   "'uni neue-trial', 'Uni Neue', 'Inter', system-ui, sans-serif",
               }}>
-              {/* Line 1 - Black */}
-              <span className="block text-black">{mainTitleLine1}</span>
+              {/* Line 1 - same font, thin weight */}
+              <span className="block text-black font-extralight">
+                {mainTitleLine1}
+              </span>
 
-              {/* Line 2 - Yellow with accent styling */}
+              {/* Line 2 - same font, bold weight and accent */}
               <span
-                className="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-amber-400 to-yellow-500 mt-1 md:mt-3"
-                style={{
-                  textShadow: "none",
-                  fontFamily:
-                    "'uni neue-trial', 'Uni Neue', 'Inter', system-ui, sans-serif",
-                }}>
+                className="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-amber-400 to-yellow-500 mt-1 md:mt-3 font-extrabold"
+                style={{ textShadow: "none" }}>
                 {mainTitleLine2}
               </span>
             </h1>

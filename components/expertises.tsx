@@ -242,10 +242,11 @@ function ExpertiseCard({
                   </div>
 
                   <h2
-                    className="font-bold tracking-tight mb-2 sm:mb-3 md:mb-4 leading-tight lg:leading-[1.1]"
+                    className="font-bold tracking-tight mb-2 sm:mb-3 md:mb-4 leading-tight lg:leading-[1.05]"
                     style={{
-                      fontFamily: "'uni neue-trial', 'Uni Neue', 'Inter', system-ui, sans-serif",
-                      fontSize: "clamp(1.5rem, 2.5vw, 2.5rem)",
+                      fontFamily:
+                        "'uni neue-trial', 'Uni Neue', 'Inter', system-ui, sans-serif",
+                      fontSize: "clamp(1.75rem, 3.2vw, 3.75rem)",
                     }}>
                     {expertise.title}
                   </h2>
@@ -253,8 +254,9 @@ function ExpertiseCard({
                   <h3
                     className="font-medium opacity-80 mb-3 sm:mb-4 md:mb-6 leading-snug"
                     style={{
-                      fontFamily: "'uni neue-trial', 'Uni Neue', 'Inter', system-ui, sans-serif",
-                      fontSize: "clamp(0.875rem, 1.2vw, 1.25rem)",
+                      fontFamily:
+                        "'uni neue-trial', 'Uni Neue', 'Inter', system-ui, sans-serif",
+                      fontSize: "clamp(1rem, 1.6vw, 1.5rem)",
                     }}>
                     {expertise.subtitle}
                   </h3>
@@ -302,9 +304,9 @@ function ExpertiseCard({
               {/* Giant Number Background - Mobile optimized */}
               <div
                 className={`absolute -bottom-4 lg:bottom-[-2rem] -right-4 lg:right-4 font-bold leading-none pointer-events-none select-none tracking-tighter ${theme.numberText} opacity-40 lg:opacity-100`}
-                style={{ 
+                style={{
                   zIndex: 0,
-                  fontSize: "clamp(6rem, 15vw, 14rem)"
+                  fontSize: "clamp(6rem, 15vw, 14rem)",
                 }}>
                 {expertise.id}
               </div>
@@ -362,12 +364,15 @@ export default function Expertises(): React.JSX.Element {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center max-w-4xl mx-auto">
           <h2
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight text-black mb-6 leading-[1.1]"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-normal tracking-tight text-black mb-6 leading-[1.1]"
             style={{
-              fontFamily: "'uni neue-trial', 'Uni Neue', 'Inter', system-ui, sans-serif",
+              fontFamily:
+                "'uni neue-trial', 'Uni Neue', 'Inter', system-ui, sans-serif",
             }}>
-            <span className="text-yellow-400">We build systems</span>, not just
-            beautiful logos.
+            <span className="font-extrabold text-yellow-400">
+              We build systems
+            </span>
+            , not just beautiful logos.
           </h2>
 
           <p
