@@ -22,14 +22,17 @@ export const LoadingProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [isLoading, setIsLoading] = useState(true);
   const pathname = usePathname();
+  // show loader only when landing on /services (or its subpaths)
+  const showOnServices = Boolean(pathname && pathname.startsWith("/services"));
+  const [isLoading, setIsLoading] = useState<boolean>(showOnServices);
 
-  // Only handle initial loading
+  // Only handle initial loading when we intend to show the loader
   useEffect(() => {
+    if (!showOnServices) return;
     const timer = setTimeout(() => setIsLoading(false), 800);
     return () => clearTimeout(timer);
-  }, []);
+  }, [showOnServices]);
 
   return (
     <LoadingContext.Provider value={{ isLoading, setIsLoading }}>
@@ -44,12 +47,12 @@ export const LoadingProvider = ({
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 1, repeat: Infinity, ease: "linear" }}>
-              <Loader2 className="text-black" size={40} />
+              <Loader2 className="text-[#FFC20E]" size={40} />
             </motion.div>
             <motion.span
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 0.5, y: 0 }}
-              className="font-mono text-[10px] uppercase tracking-[0.3em] font-bold">
+              className="font-mono text-[10px] uppercase tracking-[0.3em] font-bold text-[#1a1a1a]">
               Initializing Experience
             </motion.span>
           </motion.div>

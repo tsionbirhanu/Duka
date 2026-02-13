@@ -52,7 +52,9 @@ export default function Footer() {
 
       {/* ================= TORII GATE IMAGE WRAPPER ================= */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-10 pointer-events-none overflow-visible w-full flex justify-center">
-        <div className="relative w-full max-w-[1400px] px-4 sm:px-6 flex justify-center" style={{ pointerEvents: 'none' }}>
+        <div
+          className="relative w-full max-w-[1400px] px-4 sm:px-6 flex justify-center"
+          style={{ pointerEvents: "none" }}>
           <Image
             src="/images/dukalogo.svg"
             alt="Duka Torii Gate"
@@ -60,10 +62,24 @@ export default function Footer() {
             height={520}
             priority
             unoptimized
-            className="object-contain object-bottom w-full h-auto  -mb-80"
+            className="object-contain object-bottom w-full h-auto -mb-20 sm:-mb-80"
           />
         </div>
       </div>
+
+      {/* Mobile professional logo (transparent, no white rectangle) */}
+      {/* <div className="md:hidden w-full flex justify-center mt-6 z-20">
+        <div className="w-28 h-auto flex items-center justify-center">
+          <Image
+            src="/images/dukalogo.svg"
+            alt="Duka logo"
+            width={220}
+            height={70}
+            unoptimized
+            className="w-full h-auto"
+          />
+        </div>
+      </div> */}
 
       {/* ================= FOOTER LINKS CONTENT ================= */}
       <div className="relative z-30 w-full px-6 sm:px-8 md:px-14 lg:px-24 pb-12 sm:pb-10 mt-auto">

@@ -56,7 +56,7 @@ export default function Testimonials() {
   // 1. Check if we are on mobile to disable the scroll-jacking
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 1024);
-    
+
     checkMobile(); // Run on mount
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
@@ -79,22 +79,22 @@ export default function Testimonials() {
       // Desktop: 'h-[300vh]' to create the scroll track distance
       className={`relative bg-white mt-16 md:mt-24 lg:mt-32 ${
         isMobile ? "h-auto" : "h-[300vh]"
-      }`}
-    >
+      }`}>
       {/* Mobile: Relative positioning (flows normally)
          Desktop: Sticky positioning (locks in place while scrolling)
       */}
       <div
         className={`${
-          isMobile 
-            ? "relative py-12" 
+          isMobile
+            ? "relative py-12"
             : "sticky top-0 h-screen flex flex-col justify-center overflow-hidden"
-        }`}
-      >
+        }`}>
         {/* Header */}
         <div className="px-4 sm:px-6 lg:px-12 mb-8 md:mb-16">
           <div className="max-w-[1400px] mx-auto">
-            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter inline-block">
+            <h2
+              className="font-black uppercase tracking-tighter inline-block"
+              style={{ fontSize: "clamp(1.8rem, 5.5vw, 3.5rem)" }}>
               Client <span className="text-[#FFD600]">voices.</span>
             </h2>
           </div>
@@ -115,8 +115,7 @@ export default function Testimonials() {
               lg:overflow-visible lg:px-0 lg:pl-16 lg:pb-0
               /* Utility to hide ugly scrollbars */
               scrollbar-hide
-            `}
-          >
+            `}>
             {testimonials.map((testimonial) => (
               <div
                 key={testimonial.id}
@@ -129,27 +128,33 @@ export default function Testimonials() {
                   flex flex-col justify-between 
                   min-h-[300px] md:min-h-[360px] 
                   shadow-xl
-                `}
-              >
+                `}>
                 {/* Quote Icon */}
                 <div className="mb-6">
-                  <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor" className={`${testimonial.textColor} opacity-20`}>
+                  <svg
+                    width="40"
+                    height="40"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className={`${testimonial.textColor} opacity-20`}>
                     <path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H15.017C14.4647 8 14.017 7.55228 14.017 7V3H19.017C20.6739 3 22.017 4.34315 22.017 6V15C22.017 16.6569 20.6739 18 19.017 18H16.017V21H14.017ZM5.0166 21L5.0166 18C5.0166 16.8954 5.91203 16 7.0166 16H10.0166C10.5689 16 11.0166 15.5523 11.0166 15V9C11.0166 8.44772 10.5689 8 10.0166 8H6.0166C5.46432 8 5.0166 7.55228 5.0166 7V3H10.0166C11.6735 3 13.0166 4.34315 13.0166 6V15C13.0166 16.6569 11.6735 18 10.0166 18H7.0166V21H5.0166Z" />
                   </svg>
                 </div>
 
-                <p className={`text-xl sm:text-2xl md:text-3xl font-semibold ${testimonial.textColor} leading-snug`}>
+                <p
+                  className={`text-xl sm:text-2xl md:text-3xl font-semibold ${testimonial.textColor} leading-snug`}>
                   &quot;{testimonial.quote}&quot;
                 </p>
 
                 <div className="mt-8 pt-6 border-t border-current/10">
-                  <p className={`text-base md:text-lg font-medium ${testimonial.textColor} opacity-70`}>
+                  <p
+                    className={`text-base md:text-lg font-medium ${testimonial.textColor} opacity-70`}>
                     — {testimonial.author}
                   </p>
                 </div>
               </div>
             ))}
-            
+
             {/* End Spacer for desktop only */}
             <div className="hidden lg:block flex-shrink-0 w-24" />
           </motion.div>
@@ -160,7 +165,9 @@ export default function Testimonials() {
           <div className="px-6 md:px-12 lg:px-16 mt-16">
             <div className="max-w-7xl mx-auto">
               <div className="flex items-center gap-4">
-                <span className="text-sm text-black/40 font-medium">Scroll</span>
+                <span className="text-sm text-black/40 font-medium">
+                  Scroll
+                </span>
                 <div className="w-32 md:w-48 h-1 bg-black/10 rounded-full overflow-hidden">
                   <motion.div
                     className="h-full bg-yellow-400 rounded-full"
