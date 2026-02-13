@@ -19,6 +19,7 @@ import {
   X,
   Zap,
   ShieldCheck,
+  Loader2,
 } from "lucide-react";
 
 export default function ServicesPage() {
@@ -41,6 +42,9 @@ export default function ServicesPage() {
     return (
       <main className="bg-white min-h-screen flex items-center justify-center">
         <Header />
+        <div className="flex flex-col items-center gap-4">
+          <Loader2 className="w-8 h-8 md:w-10 md:h-10 animate-spin text-yellow-400" />
+        </div>
       </main>
     );
   }
@@ -161,9 +165,9 @@ function ServiceRow({
           </h2>
         </div>
         <div
-          className={`relative w-10 h-10 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center transition-all duration-500 border flex-shrink-0 ${isOpen ? "bg-black border-black rotate-180" : "bg-white border-black/10 group-hover:border-yellow-400 group-hover:bg-yellow-400"}`}>
+          className={`relative w-10 h-10 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center transition-all duration-500 border flex-shrink-0 ${isOpen ? "bg-black border-black rotate-180" : "bg-white border-black/10 group-hover:border-yellow-400 group-hover:bg-yellow-400 group-active:border-yellow-400 group-active:bg-yellow-400"}`}>
           <Plus
-            className={`absolute transition-all duration-500 text-black group-hover:text-black ${isOpen ? "opacity-0 scale-0" : "opacity-100 scale-100"}`}
+            className={`absolute transition-all duration-500 text-black group-hover:text-black group-active:text-black ${isOpen ? "opacity-0 scale-0" : "opacity-100 scale-100"}`}
             size={isOpen ? 20 : 28}
           />
           <Minus
